@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.Double?>
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.StartPageController" stylesheets="@../page.css" fx:id="startPage" alignment="CENTER" spacing="50">
+    <Button fx:id="buttonHoS" onAction="#buttonHoSClicked" text="HoS"/>
+    <Button fx:id="buttonDVIR" onAction="#buttonDVIRClicked" text="DVIR"/>
+</HBox>
