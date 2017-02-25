@@ -1,0 +1,103 @@
+/* DARK BLUE - #4f81bd*/
+/* GREEN HEADER LABEL - #4f6228*/
+
+
+/* HEADER START */
+
+#page{
+    -fx-background-color: white;
+    -fx-padding: 10px;
+}
+
+#menuButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4f81bd;
+    -fx-font-weight: bold;
+    -fx-font-size: 2em;
+}
+
+#menuButton .label {
+    -fx-text-fill: #4f81bd;
+}
+
+#menuButton > .arrow-button > .arrow{
+    -fx-background-color: #4f81bd;
+}
+
+#menuButton .menu-item:hover, #menuButton .menu-item:focused{
+    -fx-background-color: #4f81bd;
+}
+
+#menuButton .menu-item:hover .label, #menuButton .menu-item:focused .label{
+    -fx-text-fill: white;
+}
+
+#menuButton .menu-item .label {
+    -fx-text-fill: #4f81bd ;
+    -fx-font-size: 0.5em;
+}
+
+#headerTitleWrapper Label{
+    -fx-font-size: 2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4f81bd;
+}
+
+#labelGPS, #labelECM{
+    -fx-padding: 5px 15px;
+    -fx-background-color: #4f6228;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* HEADER END */
+
+
+
+#contentPageWrapper{
+    -fx-padding: 5px 10px 5px 10px;
+}
+
+
+
+/*Login Page Start*/
+
+#labelUsername, #labelPassword, #textFieldUsername, #passwordFieldPassword{
+    -fx-font-size: 1.5em;
+}
+
+#textFieldUsername, #passwordFieldPassword{
+    -fx-background-color: #4f81bd;
+    -fx-border-color: #4f81bd;
+    -fx-text-fill: white;
+}
+
+#labelUsername, #labelPassword{
+    -fx-text-fill: #4f81bd;
+}
+
+#buttonLogin{
+    -fx-background-color: #4f81bd;
+    -fx-font-size: 1.5em;
+    -fx-text-fill: white;
+}
+
+#buttonLogin:hover, #buttonHoS:hover, #buttonDVIR:hover{
+    -fx-background-color: #3c608d;
+}
+
+#buttonLogin:armed, #buttonHoS:hover, #buttonDVIR:hover{
+    -fx-background-color: #21354e;
+}
+
+/*Login Page End*/
+
+
+
+#buttonHoS, #buttonDVIR{
+    -fx-padding: 20px;
+    -fx-background-color: #4f81bd;
+    -fx-font-size: 2em;
+    -fx-text-fill: white;
+    -fx-pref-width: 120px;
+}
