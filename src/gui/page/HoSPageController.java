@@ -53,6 +53,8 @@ public class HoSPageController {
         alert.setResizable( false );
         alert.getDialogPane().setContent( ControllerHelper.getChangeStatusPage() );
         alert.getDialogPane().getStylesheets().add( ControllerHelper.getUtilCSSFile() );
+        alert.getDialogPane().setStyle( "-fx-border-color: #4f81bd;" +
+                                        "-fx-border-width: 5px;" );
         alert.showAndWait();
     }
 }

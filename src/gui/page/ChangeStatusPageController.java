@@ -28,7 +28,6 @@ public class ChangeStatusPageController {
             statusButton.setOnAction( event -> {
                 Status.StatusValue buttonStatusValue = Status.StatusValue.valueOf( statusButton.getText() );
                 service.setCurrentStatus( new Status( buttonStatusValue ) );
-                pageController.setPage( ControllerHelper.getHoSPage() );
                 close();
             } );
             changeStatusPage.getChildren().add( statusButton );
