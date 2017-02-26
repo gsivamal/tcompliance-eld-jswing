@@ -97,7 +97,7 @@
 
 /*Login Page End*/
 
-
+/*Hos Page Start*/
 
 #buttonHoS, #buttonDVIR{
     -fx-padding: 20px;
@@ -132,6 +132,17 @@
     -fx-background-radius: 2;
 }
 
+/*Hos Page End*/
+
+
+#changeStatusPage{
+    -fx-background-color: white;
+    -fx-padding: 100px 50px 100px 50px;
+}
+
+
+/* Dashboard tab start */
+
 #dashboardTab Label{
     -fx-font-size: 1.3em;
     -fx-pref-height: 35px;
@@ -140,3 +151,5 @@
 
 .default-color0.chart-pie { -fx-pie-color: #4e98d8; }
 .default-color1.chart-pie { -fx-pie-color: #c3c3c3; }
+
+/* Dashboard tab end */

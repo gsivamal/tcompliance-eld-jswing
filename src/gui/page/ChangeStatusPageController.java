@@ -5,6 +5,7 @@ import gui.PageController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import model.Service;
 import model.Status;
 
@@ -28,8 +29,13 @@ public class ChangeStatusPageController {
                 Status.StatusValue buttonStatusValue = Status.StatusValue.valueOf( statusButton.getText() );
                 service.setCurrentStatus( new Status( buttonStatusValue ) );
                 pageController.setPage( ControllerHelper.getHoSPage() );
+                close();
             } );
             changeStatusPage.getChildren().add( statusButton );
         }
+    }
+
+    private void close(){
+        ( (Stage) (changeStatusPage.getScene().getWindow()) ).close();
     }
 }

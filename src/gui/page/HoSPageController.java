@@ -4,8 +4,10 @@ import gui.ControllerHelper;
 import gui.PageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.StageStyle;
 import model.Service;
 
 public class HoSPageController {
@@ -46,6 +48,11 @@ public class HoSPageController {
 
     @FXML
     private void buttonCurrentStatusValueClicked(ActionEvent actionEvent) {
-        pageController.setPage( ControllerHelper.getChangeStatusPage() );
+        Alert alert = new Alert( Alert.AlertType.NONE );
+        alert.initStyle( StageStyle.UNDECORATED );
+        alert.setResizable( false );
+        alert.getDialogPane().setContent( ControllerHelper.getChangeStatusPage() );
+        alert.getDialogPane().getStylesheets().add( ControllerHelper.getUtilCSSFile() );
+        alert.showAndWait();
     }
 }

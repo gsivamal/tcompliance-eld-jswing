@@ -14,6 +14,10 @@ public class ControllerHelper {
     private static Parent loginPage, startPage, hoSPage, changeStatusPage;
 
 
+    public static String getUtilCSSFile(){
+        return ControllerHelper.class.getResource( "util.css" ).toExternalForm();
+    }
+
     public static Parent getLoginPage() {
         if(loginPage == null)
             loginPage = loadPage( "page/loginPage.fxml" );
@@ -35,10 +39,7 @@ public class ControllerHelper {
     }
 
     public static Parent getChangeStatusPage(){
-        if ( changeStatusPage == null ) {
-            changeStatusPage = loadPage( "page/changeStatusPage.fxml" );
-        }
-        return changeStatusPage;
+        return loadPage( "page/changeStatusPage.fxml" );
     }
 
     public static void clearAllPages(){
