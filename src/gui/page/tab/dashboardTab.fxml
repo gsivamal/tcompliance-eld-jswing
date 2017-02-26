@@ -1,0 +1,41 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.chart.PieChart?>
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.DashboardTabController" fx:id="dashboardTab" spacing="50">
+    <VBox spacing="40" alignment="CENTER">
+        <HBox spacing="5">
+            <Label text="Current:"/>
+            <Label fx:id="labelCurrentStatus"/>
+        </HBox>
+        <HBox spacing="5">
+            <Label text="Start time:"/>
+            <Label fx:id="labelStartDateTime"/>
+        </HBox>
+        <HBox spacing="5">
+            <Label text="Now:"/>
+            <Label fx:id="labelCurrentTime"/>
+        </HBox>
+        <HBox spacing="5">
+            <Label text="Duration:"/>
+            <Label fx:id="labelDuration"/>
+        </HBox>
+    </VBox>
+    <Label/>
+    <VBox spacing="10" alignment="CENTER">
+        <HBox spacing="5">
+            <PieChart fx:id="pieChartRule1" title="Rule 1" legendVisible="false" labelsVisible="false" titleSide="LEFT" prefWidth="30" prefHeight="30"/>
+        </HBox>
+        <HBox spacing="5">
+            <PieChart fx:id="pieChartRule2" title="Rule 2" legendVisible="false" labelsVisible="false" titleSide="LEFT" prefWidth="30" prefHeight="30"/>
+        </HBox>
+    </VBox>
+    <VBox spacing="10" alignment="CENTER">
+        <HBox spacing="5">
+            <PieChart fx:id="pieChartRule3" title="Rule 3" legendVisible="false" labelsVisible="false" titleSide="LEFT" prefWidth="30" prefHeight="30"/>
+        </HBox>
+        <HBox spacing="5">
+            <PieChart fx:id="pieChartRule4" title="Rule 4" legendVisible="false" labelsVisible="false" titleSide="LEFT" prefWidth="30" prefHeight="30"/>
+        </HBox>
+    </VBox>
+</HBox>

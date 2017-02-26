@@ -10,11 +10,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.User;
 
 public class PageController {
 
     @FXML
     private Parent page;
+
+    private User user;
 
     private Parent contentPage = new Pane();
     private Node titleNode;
@@ -58,6 +61,15 @@ public class PageController {
         in.play();
     }
 
+    public User getUser(){
+        return this.user;
+    }
+
+    public void login(User user) {
+        this.user = user;
+        setPage( ControllerHelper.getStartPage() );
+    }
+
 
     public static PageController getInstance(){
         return StartApplication.getPageController();
@@ -66,6 +78,8 @@ public class PageController {
     @FXML
     private void menuItemSwitchAccountClicked(ActionEvent actionEvent) {
         if ( ControllerHelper.showConfirmationWindow( "Switch Account", "Are you sure you want to switch account?" ) ) {
+            this.user = null;
+            ControllerHelper.clearAllPages();
             setPage( ControllerHelper.getLoginPage() );
         }
     }
@@ -80,4 +94,6 @@ public class PageController {
             ((Stage) (page.getScene().getWindow())).close();
         }
     }
+
+
 }

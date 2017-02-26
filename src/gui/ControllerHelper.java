@@ -5,24 +5,47 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
 public class ControllerHelper {
 
-    private static Parent loginPage, startPage;
-    static {
-        loginPage = loadPage( "page/loginPage.fxml" );
-        startPage = loadPage( "page/startPage.fxml" );
-    }
+    private static Parent loginPage, startPage, hoSPage, changeStatusPage;
 
 
     public static Parent getLoginPage() {
+        if(loginPage == null)
+            loginPage = loadPage( "page/loginPage.fxml" );
         return loginPage;
     }
 
     public static Parent getStartPage(){
+        if ( startPage == null ) {
+            startPage = loadPage( "page/startPage.fxml" );
+        }
         return startPage;
+    }
+
+    public static Parent getHoSPage(){
+        if ( hoSPage == null ) {
+            hoSPage = loadPage( "page/hosPage.fxml" );
+        }
+        return hoSPage;
+    }
+
+    public static Parent getChangeStatusPage(){
+        if ( changeStatusPage == null ) {
+            changeStatusPage = loadPage( "page/changeStatusPage.fxml" );
+        }
+        return changeStatusPage;
+    }
+
+    public static void clearAllPages(){
+        loginPage = null;
+        startPage = null;
+        hoSPage = null;
+        PageController.getInstance().setTitle( new Label("") );
     }
 
     public static boolean showConfirmationWindow(String title, String text) {
@@ -45,11 +68,13 @@ public class ControllerHelper {
     private static Parent loadPage(String fileName){
         try {
             FXMLLoader loader = new FXMLLoader( ControllerHelper.class.getResource( fileName ) );
-            Parent root = loader.load();
-            return root;
+            return loader.load();
         } catch (IOException e) {
             ControllerHelper.showErrorWindow( "Error", "There was an error accessing page" );
+            e.printStackTrace();
             return null;
         }
     }
+
+
 }

@@ -9,6 +9,11 @@
     -fx-padding: 10px;
 }
 
+#page #header{
+    -fx-border-color: #4a7ebb;
+    -fx-border-width: 0 0 2px 0;
+}
+
 #menuButton {
     -fx-background-color: transparent;
     -fx-text-fill: #4f81bd;
@@ -101,3 +106,37 @@
     -fx-text-fill: white;
     -fx-pref-width: 120px;
 }
+
+
+#hosHeader{
+    -fx-padding: 5px 20px 5px 20px;
+}
+
+#hosHeader Label, #hosHeader Button{
+    -fx-font-size: 1.3em;
+    -fx-pref-height: 35px;
+}
+
+#buttonCurrentStatusValue{
+    -fx-text-fill: white;
+}
+
+#labelNotificationMessage {
+    -fx-text-fill: #314b70;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.5em;
+}
+
+.seperator{
+    -fx-background-color: #4f81bd;
+    -fx-background-radius: 2;
+}
+
+#dashboardTab Label{
+    -fx-font-size: 1.3em;
+    -fx-pref-height: 35px;
+}
+
+
+.default-color0.chart-pie { -fx-pie-color: #4e98d8; }
+.default-color1.chart-pie { -fx-pie-color: #c3c3c3; }

@@ -29,3 +29,47 @@
     -fx-background-color: #4f81bd;
     -fx-text-fill: white;
 }
+
+.changeStatusButton{
+    -fx-font-size: 1.5em;
+    -fx-text-fill: white;
+    -fx-padding: 10px 30px;
+}
+
+
+
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:140px;
+    -fx-padding: 5px;
+}
+
+.tab-pane .tab
+{
+    -fx-padding: 5px;
+    -fx-background-color: #4f81bd;
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab-pane .tab:hover
+{
+    -fx-background-color: #2b67b0;
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #1f497d;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-size: 1.5em;
+}
+
+

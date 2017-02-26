@@ -1,0 +1,68 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.HoSPageController" fx:id="hosPage">
+    <top>
+        <VBox spacing="10">
+            <BorderPane fx:id="hosHeader">
+                <left>
+                    <HBox spacing="5" alignment="CENTER">
+                        <VBox spacing="10">
+                            <Label fx:id="labelCurrentStatus" text="Current status: "/>
+                            <Label fx:id="labelDriver" text="Driver: "/>
+                        </VBox>
+                        <VBox spacing="10">
+                            <Button fx:id="buttonCurrentStatusValue" onAction="#buttonCurrentStatusValueClicked"/>
+                            <Label fx:id="labelDriverValue"/>
+                        </VBox>
+                    </HBox>
+                </left>
+
+                <center>
+                    <HBox spacing="5" alignment="CENTER">
+                        <VBox spacing="10">
+                            <Label fx:id="labelDate" text="Date: "/>
+                            <Label fx:id="labelCoDriver" text="Co - Driver: "/>
+                        </VBox>
+                        <VBox spacing="10">
+                            <Label fx:id="labelDateValue"/>
+                            <Label fx:id="labelCoDriverValue"/>
+                        </VBox>
+                    </HBox>
+                </center>
+
+                <right>
+                    <HBox spacing="5" alignment="CENTER">
+                        <VBox spacing="10">
+                            <Label fx:id="labelBigTime"/>
+                            <Label fx:id="labelDOT" text="Driver: "/>
+                        </VBox>
+                        <VBox spacing="10">
+                            <Label fx:id="labelBigTimeValue" text="07:30"/>
+                            <Label fx:id="labelDOTValue" text="DOT"/>
+                        </VBox>
+                    </HBox>
+                </right>
+            </BorderPane>
+            <Separator styleClass="seperator"/>
+            <VBox>
+                <Label fx:id="labelNotificationMessage"/>
+            </VBox>
+            <Separator styleClass="seperator"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane stylesheets="@../util.css">
+            <tabs>
+                <Tab text="Dashboard" closable="false">
+                    <fx:include fx:id="dashboardTab" source="tab/dashboardTab.fxml"/>
+                </Tab>
+                <Tab text="Graph" closable="false"></Tab>
+                <Tab text="Today" closable="false"></Tab>
+                <Tab text="Recap" closable="false"></Tab>
+                <Tab text="Load/Fuel" closable="false"></Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

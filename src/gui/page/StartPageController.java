@@ -1,5 +1,6 @@
 package gui.page;
 
+import gui.ControllerHelper;
 import gui.PageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ public class StartPageController {
 
     @FXML
     private void buttonHoSClicked(ActionEvent actionEvent) {
-
+        pageController.setPage( ControllerHelper.getHoSPage() );
     }
 
     @FXML
