@@ -18,6 +18,10 @@ public class ControllerHelper {
         return ControllerHelper.class.getResource( "util.css" ).toExternalForm();
     }
 
+    public static String getPageCSSFile(){
+        return ControllerHelper.class.getResource( "page.css" ).toExternalForm();
+    }
+
     public static Parent getLoginPage() {
         if(loginPage == null)
             loginPage = loadPage( "page/loginPage.fxml" );

@@ -2,6 +2,7 @@ package model;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -11,6 +12,8 @@ public class Status {
     private ObjectProperty<LocalDateTime> startTime = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDateTime> endTime = new SimpleObjectProperty<>();
     private ObjectProperty<Duration> duration = new SimpleObjectProperty<>();
+    private SimpleStringProperty location = new SimpleStringProperty( "Austin TX" );
+    private SimpleStringProperty notes = new SimpleStringProperty( "Notes" );
 
     public Status(StatusValue statusValue, LocalDateTime startTime) {
         this.startTime.addListener( (observable, oldValue, newValue) -> {
@@ -72,6 +75,34 @@ public class Status {
 
     public ObjectProperty<Duration> durationProperty() {
         return duration;
+    }
+
+    public String getLocation() {
+        return location.get();
+    }
+
+    public SimpleStringProperty locationProperty() {
+        return location;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration.set( duration );
+    }
+
+    public void setLocation(String location) {
+        this.location.set( location );
+    }
+
+    public String getNotes() {
+        return notes.get();
+    }
+
+    public SimpleStringProperty notesProperty() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes.set( notes );
     }
 
     public enum StatusValue {

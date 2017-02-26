@@ -153,3 +153,34 @@
 .default-color1.chart-pie { -fx-pie-color: #c3c3c3; }
 
 /* Dashboard tab end */
+
+
+
+/* Today tab Start */
+
+#buttonNextDay, #buttonPreviousDay {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #4f81bd;
+    -fx-font-weight: bolder;
+    -fx-font-size: 2em;
+
+}
+
+.tabButton{
+    -fx-background-color: #4f81bd;
+    -fx-text-fill: white;
+    -fx-font-size: 1.4em;
+    -fx-pref-width: 120px;
+    -fx-border-color: #4f81bd;
+}
+
+/* Today tab End */
+
+#loadFuelTab{
+    -fx-padding: 20px;
+}
+
+#loadFuelTab Label{
+    -fx-font-size: 1.5em;
+}

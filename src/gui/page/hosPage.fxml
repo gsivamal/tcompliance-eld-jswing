@@ -58,10 +58,17 @@
                 <Tab text="Dashboard" closable="false">
                     <fx:include fx:id="dashboardTab" source="tab/dashboardTab.fxml"/>
                 </Tab>
-                <Tab text="Graph" closable="false"></Tab>
-                <Tab text="Today" closable="false"></Tab>
-                <Tab text="Recap" closable="false"></Tab>
-                <Tab text="Load/Fuel" closable="false"></Tab>
+                <Tab text="Graph" closable="false">
+                </Tab>
+                <Tab text="Today" closable="false">
+                    <fx:include fx:id="todayTab" source="tab/todayTab.fxml"/>
+                </Tab>
+                <Tab text="Recap" closable="false">
+                    <fx:include fx:id="recapTab" source="tab/recapTab.fxml"/>
+                </Tab>
+                <Tab text="Load/Fuel" closable="false">
+                    <fx:include fx:id="loadFuelTab" source="tab/loadFuelTab.fxml"/>
+                </Tab>
             </tabs>
         </TabPane>
     </center>

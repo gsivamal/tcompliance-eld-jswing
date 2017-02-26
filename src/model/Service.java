@@ -41,6 +41,8 @@ public class Service {
 
     public void setCurrentStatus(Status currentStatus) {
         if ( getCurrentStatus() != null ) {
+            if(getCurrentStatus().getStatusValue().equals( currentStatus.getStatusValue() ))
+                return;
             getCurrentStatus().setEndTime( LocalDateTime.now() );
             statusHistory.get().addStatus( getCurrentStatus() );
         }
@@ -81,6 +83,14 @@ public class Service {
 
     public void setNotificationMessage(String notificationMessage) {
         this.notificationMessage.set( notificationMessage );
+    }
+
+    public StatusHistory getStatusHistory() {
+        return statusHistory.get();
+    }
+
+    public SimpleObjectProperty<StatusHistory> statusHistoryProperty() {
+        return statusHistory;
     }
 
     public Status getFirstStatus(){
