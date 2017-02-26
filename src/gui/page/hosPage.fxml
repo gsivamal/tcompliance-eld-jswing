@@ -59,6 +59,7 @@
                     <fx:include fx:id="dashboardTab" source="tab/dashboardTab.fxml"/>
                 </Tab>
                 <Tab text="Graph" closable="false">
+                    <fx:include fx:id="graphTab" source="tab/graphTab.fxml"/>
                 </Tab>
                 <Tab text="Today" closable="false">
                     <fx:include fx:id="todayTab" source="tab/todayTab.fxml"/>
