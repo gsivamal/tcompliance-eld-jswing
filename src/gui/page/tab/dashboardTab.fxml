@@ -2,7 +2,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.chart.PieChart?>
-<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.DashboardTabController" fx:id="dashboardTab" spacing="50">
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.DashboardTabController" fx:id="dashboardTab" spacing="50" alignment="CENTER">
     <VBox spacing="40" alignment="CENTER">
         <HBox spacing="5">
             <Label text="Current:"/>

@@ -6,12 +6,24 @@
 
 #page{
     -fx-background-color: white;
-    -fx-padding: 10px;
 }
 
 #page #header{
     -fx-border-color: #4a7ebb;
     -fx-border-width: 0 0 2px 0;
+    -fx-padding: 10px 20px 10px 20px;
+}
+
+
+#page #footer #labelFooter{
+    -fx-font-size: 3em;
+}
+
+#page #footer{
+    -fx-border-color: #4f81bd;
+    -fx-border-width: 2px 0 0 0;
+    -fx-background-color: #C7D9F0;
+    -fx-padding: 10px 100px 10px 100px;
 }
 
 #menuButton {
@@ -175,6 +187,10 @@
     -fx-border-color: #4f81bd;
 }
 
+.tabButtonWrapper{
+    -fx-padding: 10px 0px 0 0;
+}
+
 /* Today tab End */
 
 #loadFuelTab{
@@ -184,3 +200,4 @@
 #loadFuelTab Label{
     -fx-font-size: 1.5em;
 }
+

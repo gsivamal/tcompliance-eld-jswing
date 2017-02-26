@@ -1,48 +1,50 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.Double?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.LoadFuelTabController" fx:id="loadFuelTab">
-    <center>
-        <fx:define>
-            <Double fx:id="SPACING_VERTICAL" fx:value="20"/>
-            <Double fx:id="SPACING_HORIZONTAL" fx:value="10"/>
-        </fx:define>
-        <StackPane alignment="CENTER">
-            <HBox spacing="200" alignment="CENTER">
-                <HBox spacing="$SPACING_HORIZONTAL">
-                    <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                        <Label text="Load #: "/>
-                        <Label text="Start: "/>
-                        <Label text="End: "/>
-                        <Label text="B/L #: "/>
-                    </VBox>
-                    <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                        <Label fx:id="labelLoadValue" text="123"/>
-                        <Label fx:id="labelStartValue" text="02/18/2017 10:30"/>
-                        <Label fx:id="labelEndValue" text="02/18/2017 12:30"/>
-                        <Label fx:id="labelBLValue"  text="12345"/>
-                    </VBox>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.LoadFuelTabController" fx:id="loadFuelTab" alignment="CENTER">
+    <BorderPane>
+        <center>
+            <fx:define>
+                <Double fx:id="SPACING_VERTICAL" fx:value="20"/>
+                <Double fx:id="SPACING_HORIZONTAL" fx:value="10"/>
+            </fx:define>
+            <StackPane alignment="CENTER">
+                <HBox spacing="200" alignment="CENTER">
+                    <HBox spacing="$SPACING_HORIZONTAL">
+                        <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
+                            <Label text="Load #: "/>
+                            <Label text="Start: "/>
+                            <Label text="End: "/>
+                            <Label text="B/L #: "/>
+                        </VBox>
+                        <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
+                            <Label fx:id="labelLoadValue" text="123"/>
+                            <Label fx:id="labelStartValue" text="02/18/2017 10:30"/>
+                            <Label fx:id="labelEndValue" text="02/18/2017 12:30"/>
+                            <Label fx:id="labelBLValue"  text="12345"/>
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="$SPACING_HORIZONTAL">
+                        <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
+                            <Label text="Truck/Tractor: "/>
+                            <Label text="Trailer 1: "/>
+                            <Label text="Trailer 2: "/>
+                            <Label text="Fuel Card #: "/>
+                        </VBox>
+                        <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
+                            <Label fx:id="labelTruckTractorValue" text="123"/>
+                            <Label fx:id="labelTrailer1Value" text="Full"/>
+                            <Label fx:id="labelTrailer2Value" text="Full"/>
+                            <Label fx:id="labelFuelCardValue" text="12345"/>
+                        </VBox>
+                    </HBox>
                 </HBox>
-                <HBox spacing="$SPACING_HORIZONTAL">
-                    <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                        <Label text="Truck/Tractor: "/>
-                        <Label text="Trailer 1: "/>
-                        <Label text="Trailer 2: "/>
-                        <Label text="Fuel Card #: "/>
-                    </VBox>
-                    <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                        <Label fx:id="labelTruckTractorValue" text="123"/>
-                        <Label fx:id="labelTrailer1Value" text="Full"/>
-                        <Label fx:id="labelTrailer2Value" text="Full"/>
-                        <Label fx:id="labelFuelCardValue" text="12345"/>
-                    </VBox>
-                </HBox>
-            </HBox>
-        </StackPane>
-    </center>
-    <bottom>
-        <StackPane alignment="CENTER">
-            <Button fx:id="saveButton" onAction="#saveButtonClicked" text="Save" styleClass="tabButton"/>
-        </StackPane>
-    </bottom>
-</BorderPane>
+            </StackPane>
+        </center>
+        <bottom>
+            <StackPane alignment="CENTER_RIGHT" styleClass="tabButtonWrapper">
+                <Button fx:id="saveButton" onAction="#saveButtonClicked" text="Save" styleClass="tabButton"/>
+            </StackPane>
+        </bottom>
+    </BorderPane>
+</StackPane>

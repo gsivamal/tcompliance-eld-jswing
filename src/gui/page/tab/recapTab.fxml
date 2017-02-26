@@ -1,28 +1,37 @@
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.StackPane?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.RecapTabController" alignment="CENTER" fx:id="recapTab" spacing="5">
-    <Label/>
-    <HBox spacing="3" alignment="CENTER_LEFT">
-        <Button fx:id="buttonPreviousDay" onAction="#buttonPreviousDayClicked" text="⬅"/>
-        <DatePicker fx:id="datePickerSelectedDay"/>
-        <Button fx:id="buttonNextDay" onAction="#buttonNextDayClicked" text="➡"/>
-    </HBox>
-    <TableView fx:id="tableRecap">
-        <columns>
-            <TableColumn fx:id="tableColumnDate" text="Date"/>
-            <TableColumn fx:id="tableColumnDriving" text="Driving"/>
-            <TableColumn fx:id="tableColumnOnDuty" text="On-Duty"/>
-            <TableColumn fx:id="tableColumnMileage" text="Mileage"/>
-            <TableColumn fx:id="tableColumnTotal" text="Total"/>
-        </columns>
-    </TableView>
-    <StackPane alignment="BASELINE_RIGHT">
-        <Label fx:id="labelTotal" text="Total"/>
-    </StackPane>
-    <StackPane alignment="CENTER">
-        <Button fx:id="buttonDetails" onAction="#buttonDetailsClicked" text="Details" styleClass="tabButton"/>
-    </StackPane>
-</VBox>
+<?import javafx.scene.layout.VBox?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.RecapTabController" fx:id="recapTab" alignment="CENTER">
+    <BorderPane>
+        <top>
+            <HBox spacing="3" alignment="CENTER_LEFT">
+                <Button fx:id="buttonPreviousDay" onAction="#buttonPreviousDayClicked" text="⬅"/>
+                <DatePicker fx:id="datePickerSelectedDay"/>
+                <Button fx:id="buttonNextDay" onAction="#buttonNextDayClicked" text="➡"/>
+            </HBox>
+        </top>
+        <center>
+            <VBox>
+                <TableView fx:id="tableRecap" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="tableColumnDate" text="Date"/>
+                        <TableColumn fx:id="tableColumnDriving" text="Driving"/>
+                        <TableColumn fx:id="tableColumnOnDuty" text="On-Duty"/>
+                        <TableColumn fx:id="tableColumnMileage" text="Mileage"/>
+                        <TableColumn fx:id="tableColumnTotal" text="Total"/>
+                    </columns>
+                </TableView>
+                <StackPane alignment="BASELINE_RIGHT">
+                    <Label fx:id="labelTotal" text="Total"/>
+                </StackPane>
+            </VBox>
+        </center>
+        <bottom>
+            <StackPane alignment="CENTER_RIGHT" styleClass="tabButtonWrapper">
+                <Button fx:id="buttonDetails" onAction="#buttonDetailsClicked" text="Details" styleClass="tabButton"/>
+            </StackPane>
+        </bottom>
+    </BorderPane>
+</StackPane>

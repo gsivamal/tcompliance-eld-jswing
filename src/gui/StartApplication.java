@@ -50,7 +50,7 @@ public class StartApplication extends Application {
         pageController = loader.getController();
         pageController.setPage( ControllerHelper.getLoginPage() );
         primaryStage.setTitle("Driver's system");
-        primaryStage.setScene( new Scene( root, 960, 610 ) );
+        primaryStage.setScene( new Scene( root, 960, 670 ) );
         primaryStage.show();
     }
 

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -24,9 +25,10 @@ public class PageController {
 
     @FXML
     private BorderPane header, footer;
-
     @FXML
     private StackPane contentPageWrapper, headerTitleWrapper;
+    @FXML
+    private Label labelFooter;
 
     @FXML
     private void initialize(){
