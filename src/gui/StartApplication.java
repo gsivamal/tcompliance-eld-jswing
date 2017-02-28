@@ -48,7 +48,7 @@ public class StartApplication extends Application {
         FXMLLoader loader = new FXMLLoader( getClass().getResource( "page.fxml" ) );
         Parent root = loader.load();
         pageController = loader.getController();
-        pageController.setPage( ControllerHelper.getLoginPage() );
+        pageController.setPage( ControllerHelper.getAdminPage() );
         primaryStage.setTitle("Driver's system");
         primaryStage.setScene( new Scene( root, 960, 670 ) );
         primaryStage.show();

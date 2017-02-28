@@ -93,6 +93,17 @@
     -fx-text-fill: #4f81bd;
 }
 
+.check-box{
+    -fx-text-fill: #4f81bd;
+    -fx-font-weight: bold;
+}
+
+.check-box > .box {
+    -fx-border-color: #4f81bd;
+    -fx-border-width: 3px;
+    -fx-background-color: white;
+}
+
 #buttonLogin{
     -fx-background-color: #4f81bd;
     -fx-font-size: 1.5em;
@@ -201,3 +212,18 @@
     -fx-font-size: 1.5em;
 }
 
+
+#adminPage Label{
+    -fx-text-fill: #4f81bd;
+}
+
+#adminPage TextField {
+    -fx-border-color: #4f81bd;
+    -fx-border-width: 3px;
+    -fx-text-fill: #4f81bd;
+    -fx-background-color: white;
+}
+
+#adminPage .table-view .label{
+    -fx-text-fill: white;
+}

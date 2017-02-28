@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ControllerHelper {
 
-    private static Parent loginPage, startPage, hoSPage, changeStatusPage;
+    private static Parent loginPage, startPage, hoSPage, changeStatusPage, adminPage;
 
 
     public static String getUtilCSSFile(){
@@ -40,6 +40,13 @@ public class ControllerHelper {
             hoSPage = loadPage( "page/hosPage.fxml" );
         }
         return hoSPage;
+    }
+
+    public static Parent getAdminPage(){
+        if ( adminPage == null ) {
+            adminPage = loadPage( "page/adminPage.fxml" );
+        }
+        return adminPage;
     }
 
     public static Parent getChangeStatusPage(){

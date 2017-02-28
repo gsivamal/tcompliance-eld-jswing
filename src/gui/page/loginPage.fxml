@@ -7,7 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import java.lang.Double?>
 <?import javafx.scene.control.Button?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.LoginPageController" alignment="CENTER" spacing="50" fx:id="loginPage">
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.StackPane?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.LoginPageController" alignment="CENTER" spacing="20" fx:id="loginPage">
     <HBox alignment="CENTER">
         <fx:define>
             <Double fx:id="SPACING" fx:value="20"/>
@@ -21,5 +23,8 @@
             <PasswordField fx:id="passwordFieldPassword"/>
         </VBox>
     </HBox>
+    <StackPane alignment="CENTER_RIGHT">
+        <CheckBox fx:id="checkBoxAdminLogin" text="Admin Login"/>
+    </StackPane>
     <Button fx:id="buttonLogin" onAction="#buttonLoginClicked" text="Login"/>
 </VBox>
