@@ -53,6 +53,10 @@ public class ControllerHelper {
         return loadPage( "page/changeStatusPage.fxml" );
     }
 
+    public static Parent getAddUserPage(){
+        return loadPage( "page/newUserPage.fxml" );
+    }
+
     public static void clearAllPages(){
         loginPage = null;
         startPage = null;

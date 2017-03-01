@@ -1,9 +1,13 @@
 package gui.page;
 
+import gui.ControllerHelper;
 import gui.PageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.StageStyle;
+import model.User;
+import model.UserList;
 
 
 public class AdminPageController {
@@ -12,15 +16,11 @@ public class AdminPageController {
 
     private PageController pageController = PageController.getInstance();
     @FXML
-    private TableView tableUserList;
+    private TableView<User> tableUserList;
     @FXML
-    private TableColumn tableColumnID, tableColumnFirstName, tableColumnLastName, tableColumnLicNumber, tableColumnUsername, tableColumnPassword, tableColumnStatus;
+    private TableColumn<User, String> tableColumnID, tableColumnFirstName, tableColumnLastName, tableColumnLicNumber, tableColumnUsername, tableColumnPassword, tableColumnStatus;
     @FXML
-    private Button buttonNew, buttonDisable, buttonDelete, buttonSaveNew;
-    @FXML
-    private Label labelLicNumber, labelID, labelFirstName, labelMiddleName, labelLastName, labelStatus, labelIssuedState, labelUsername, labelIssuedCountry, labelPassword;
-    @FXML
-    private TextField textFieldLicNumber, textFieldStatus, textFieldIssuedState, textFieldIssuedCountry, textFieldUsername, textFieldPassword,  textFieldFirstName, textFieldID, textFieldMiddleName, textFieldLastName;
+    private Button buttonNew, buttonDisable, buttonDelete;
 
     @FXML
     private void initialize(){
@@ -32,38 +32,55 @@ public class AdminPageController {
         tableColumnUsername.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.1699 ) );
         tableColumnPassword.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.15 ) );
         tableColumnStatus.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.1 ) );
+        tableUserList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        group( labelID, textFieldID );
-        group( labelFirstName, textFieldFirstName );
-        group( labelLastName, textFieldLastName );
-        group( labelMiddleName, textFieldMiddleName );
-        group( labelLicNumber, textFieldLicNumber );
-        group( labelStatus, textFieldStatus );
-        group( labelIssuedState, textFieldIssuedState );
-        group( labelIssuedCountry, textFieldIssuedCountry );
-        group( labelUsername, textFieldUsername );
-        group( labelPassword, textFieldPassword );
-    }
+        tableColumnID.setCellValueFactory( cellData -> cellData.getValue().IDProperty() );
+        tableColumnFirstName.setCellValueFactory( cellData -> cellData.getValue().firstNameProperty() );
+        tableColumnLastName.setCellValueFactory( cellData -> cellData.getValue().lastNameProperty() );
+        tableColumnLicNumber.setCellValueFactory( cellData -> cellData.getValue().licNumberProperty() );
+        tableColumnUsername.setCellValueFactory( cellData -> cellData.getValue().usernameProperty() );
+        tableColumnPassword.setCellValueFactory( cellData -> cellData.getValue().passwordProperty() );
+        tableColumnStatus.setCellValueFactory( cellData -> cellData.getValue().statusProperty() );
 
-    private void group(Label label, TextField textField) {
-        textField.heightProperty().addListener( (observable, oldValue, newValue) -> {
-            label.setPrefHeight( newValue.doubleValue() );
-        } );
+        tableUserList.setItems( UserList.getInstance().observableList() );
+
+
+
     }
 
     @FXML
     private void buttonNewClicked(ActionEvent actionEvent) {
+        Alert alert = new Alert( Alert.AlertType.NONE );
+        alert.initStyle( StageStyle.UNDECORATED );
+        alert.setResizable( false );
+        alert.getDialogPane().setContent( ControllerHelper.getAddUserPage() );
+        alert.getDialogPane().getStylesheets().add( ControllerHelper.getUtilCSSFile() );
+        alert.getDialogPane().setStyle( "-fx-border-color: #4f81bd;" +
+                "-fx-border-width: 5px;" );
+        alert.showAndWait();
     }
 
     @FXML
     private void buttonDisableClicked(ActionEvent actionEvent) {
+        User selected = getSelected();
+        if ( selected != null ) {
+            if ( ControllerHelper.showConfirmationWindow( "Disable user", "Are you sure you want to disable user ID: " + selected.getID() ) ) {
+                selected.setStatus( "Inactive" );
+            }
+        }
     }
 
     @FXML
     private void buttonDeleteClicked(ActionEvent actionEvent) {
+        User selected = getSelected();
+        if ( selected != null ) {
+            if ( ControllerHelper.showConfirmationWindow( "Delete user", "Are you sure you want to delete user ID: " + selected.getID() ) ) {
+                UserList.getInstance().remove( selected );
+            }
+        }
     }
 
-    @FXML
-    private void buttonSaveNewClicked(ActionEvent actionEvent) {
+    private User getSelected(){
+        return tableUserList.getSelectionModel().getSelectedItem();
     }
 }

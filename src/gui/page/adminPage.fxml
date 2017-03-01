@@ -18,62 +18,16 @@
                     <TableColumn fx:id="tableColumnStatus" text="Status"/>
                 </columns>
             </TableView>
+        </VBox>
+    </center>
+    <bottom>
+        <VBox spacing="10">
+            <Label/>
             <HBox spacing="10" alignment="CENTER_RIGHT">
                 <Button fx:id="buttonNew" onAction="#buttonNewClicked" text="New"/>
                 <Button fx:id="buttonDisable" onAction="#buttonDisableClicked" text="Disable"/>
                 <Button fx:id="buttonDelete" onAction="#buttonDeleteClicked" text="Delete"/>
             </HBox>
-        </VBox>
-    </center>
-    <bottom>
-        <fx:define>
-            <Double fx:id="VERTICAL_SPACING" fx:value="20"/>
-            <Double fx:id="HORIZONTAL_SPACING" fx:value="10"/>
-            <Double fx:id="DEFAULT_LABEL_HEIGHT" fx:value="26"/>
-        </fx:define>
-        <VBox spacing="20">
-            <Label/>
-            <HBox spacing="150" alignment="CENTER">
-                <HBox spacing="$HORIZONTAL_SPACING">
-                    <VBox spacing="$VERTICAL_SPACING">
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelID" text="ID"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelFirstName" text="First Name"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelMiddleName" text="Middle Name"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelLastName" text="Last Name"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelLicNumber" text="Lic #"/>
-                    </VBox>
-
-
-                    <VBox spacing="$VERTICAL_SPACING">
-                        <TextField fx:id="textFieldID"/>
-                        <TextField fx:id="textFieldFirstName"/>
-                        <TextField fx:id="textFieldMiddleName"/>
-                        <TextField fx:id="textFieldLastName"/>
-                        <TextField fx:id="textFieldLicNumber"/>
-                    </VBox>
-                </HBox>
-
-                <HBox spacing="$HORIZONTAL_SPACING">
-                    <VBox spacing="$VERTICAL_SPACING">
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelStatus" text="Status"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelIssuedState" text="Issued State"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelIssuedCountry" text="Issued Country"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelUsername" text="Username"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelPassword" text="Password"/>
-                    </VBox>
-
-                    <VBox spacing="$VERTICAL_SPACING">
-                        <TextField fx:id="textFieldStatus"/>
-                        <TextField fx:id="textFieldIssuedState"/>
-                        <TextField fx:id="textFieldIssuedCountry"/>
-                        <TextField fx:id="textFieldUsername"/>
-                        <TextField fx:id="textFieldPassword"/>
-                    </VBox>
-                </HBox>
-            </HBox>
-            <StackPane alignment="CENTER_RIGHT">
-                <Button fx:id="buttonSaveNew" onAction="#buttonSaveNewClicked" text="Save!"/>
-            </StackPane>
         </VBox>
     </bottom>
 </BorderPane>

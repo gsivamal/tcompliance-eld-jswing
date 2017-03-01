@@ -5,6 +5,7 @@ import gui.PageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,6 +24,8 @@ public class LoginPageController {
     private TextField textFieldUsername;
     @FXML
     private PasswordField passwordFieldPassword;
+    @FXML
+    private CheckBox checkBoxAdminLogin;
 
     private PageController pageController = PageController.getInstance();
 
@@ -65,6 +68,10 @@ public class LoginPageController {
             ControllerHelper.showErrorWindow( "No user", "Make sure you entered right username and password\n\n\n\n\n" );
             return;
         }
-        pageController.login( user );
+        pageController.login( user, isAdminLogin() );
+    }
+
+    private boolean isAdminLogin(){
+        return checkBoxAdminLogin.isSelected();
     }
 }

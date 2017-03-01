@@ -28,7 +28,7 @@ public class PageController {
     @FXML
     private StackPane contentPageWrapper, headerTitleWrapper;
     @FXML
-    private Label labelFooter;
+    private Label labelFooter, labelFooterUsername, labelFooterRole;
 
     @FXML
     private void initialize(){
@@ -67,9 +67,15 @@ public class PageController {
         return this.user;
     }
 
-    public void login(User user) {
+    public void login(User user, boolean isAdminLogin) {
         this.user = user;
-        setPage( ControllerHelper.getStartPage() );
+        this.labelFooterUsername.setText( user.getUsername() );
+        this.labelFooterRole.setText( user.isAdmin() ? "Admin" : "Driver" );
+        if ( isAdminLogin && user.isAdmin() ) {
+            setPage( ControllerHelper.getAdminPage() );
+        } else {
+            setPage( ControllerHelper.getStartPage() );
+        }
     }
 
 

@@ -23,7 +23,7 @@
     -fx-border-color: #4f81bd;
     -fx-border-width: 2px 0 0 0;
     -fx-background-color: #C7D9F0;
-    -fx-padding: 10px 100px 10px 100px;
+    -fx-padding: 10px 30px 10px 100px;
 }
 
 #menuButton {
@@ -79,17 +79,17 @@
 
 /*Login Page Start*/
 
-#labelUsername, #labelPassword, #textFieldUsername, #passwordFieldPassword{
+#loginPage #labelUsername, #loginPage #labelPassword,#loginPage #textFieldUsername,#loginPage #passwordFieldPassword{
     -fx-font-size: 1.5em;
 }
 
-#textFieldUsername, #passwordFieldPassword{
+#loginPage #textFieldUsername, #loginPage #passwordFieldPassword{
     -fx-background-color: #4f81bd;
     -fx-border-color: #4f81bd;
     -fx-text-fill: white;
 }
 
-#labelUsername, #labelPassword{
+#loginPage #labelUsername, #loginPage #labelPassword{
     -fx-text-fill: #4f81bd;
 }
 
@@ -227,3 +227,36 @@
 #adminPage .table-view .label{
     -fx-text-fill: white;
 }
+
+#adminPage Button, #newUserPage Button{
+    -fx-background-color: #4f81bd;
+    -fx-text-fill: white;
+    -fx-font-size: 1.4em;
+    -fx-pref-width: 120px;
+    -fx-border-color: #4f81bd;
+}
+
+#newUserPage .label{
+    -fx-font-weight: bold;
+}
+
+#newUserPage Button{
+    -fx-pref-width: 80px;
+    -fx-font-size: 1.2em;
+}
+
+#newUserPage .combo-box{
+    -fx-background-color: white;
+    -fx-border-color: #4f81bd;
+}
+
+#newUserPage .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover {
+    -fx-background-color: #4f81bd;
+}
+
+#newUserPage .text-field{
+    -fx-background-color: white;
+    -fx-border-color: #4f81bd;
+}
+
+

@@ -47,6 +47,12 @@
                     <Image url="logo.png"/>
                 </ImageView>
             </left>
+            <right>
+                <VBox alignment="CENTER_RIGHT" spacing="5">
+                    <Label fx:id="labelFooterUsername"/>
+                    <Label fx:id="labelFooterRole"/>
+                </VBox>
+            </right>
         </BorderPane>
     </bottom>
 </BorderPane>
