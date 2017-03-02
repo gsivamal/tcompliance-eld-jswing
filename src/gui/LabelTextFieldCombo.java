@@ -12,11 +12,13 @@ public class LabelTextFieldCombo {
 
     public LabelTextFieldCombo(String labelText, int spacing) {
 
+        this.holder = new HBox(spacing);
         this.label = new Label( labelText );
         this.textField = new TextField();
         this.textField.heightProperty().addListener( (observable, oldValue, newValue) -> {
             label.setPrefHeight( newValue.doubleValue() );
         } );
+        this.holder.getChildren().addAll( this.label, this.textField );
     }
 
     public Label getLabel() {
@@ -33,5 +35,9 @@ public class LabelTextFieldCombo {
 
     public void setTextField(TextField textField) {
         this.textField = textField;
+    }
+
+    public void setSpacing(double spacing) {
+        holder.setSpacing( spacing );
     }
 }

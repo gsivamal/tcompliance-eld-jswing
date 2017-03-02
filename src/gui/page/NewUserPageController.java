@@ -4,10 +4,7 @@ import gui.ControllerHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.User;
 import model.UserList;
@@ -15,11 +12,13 @@ import model.UserList;
 public class NewUserPageController {
 
     @FXML
+    private PasswordField passwordFieldPassword, passwordFieldConfirmPassword;
+    @FXML
     private Parent newUserPage;
     @FXML
-    private Label labelLicNumber, labelID, labelFirstName, labelMiddleName, labelLastName, labelStatus, labelIssuedState, labelUsername, labelIssuedCountry, labelPassword;
+    private Label labelLicNumber, labelID, labelFirstName, labelMiddleName, labelLastName, labelStatus, labelIssuedState, labelUsername, labelIssuedCountry, labelPassword, labelConfirmPassword;
     @FXML
-    private TextField textFieldLicNumber, textFieldIssuedState, textFieldIssuedCountry, textFieldUsername, textFieldPassword,  textFieldFirstName, textFieldID, textFieldMiddleName, textFieldLastName;
+    private TextField textFieldLicNumber, textFieldIssuedState, textFieldIssuedCountry, textFieldUsername, textFieldFirstName, textFieldID, textFieldMiddleName, textFieldLastName;
     @FXML
     private ComboBox<String> comboBoxStatus;
     @FXML
@@ -36,7 +35,9 @@ public class NewUserPageController {
         group( labelIssuedState, textFieldIssuedState );
         group( labelIssuedCountry, textFieldIssuedCountry );
         group( labelUsername, textFieldUsername );
-        group( labelPassword, textFieldPassword );
+        group( labelPassword, passwordFieldPassword );
+        group( labelConfirmPassword, passwordFieldConfirmPassword );
+        sizeLabels( labelID, labelFirstName, labelLastName, labelMiddleName, labelLicNumber, labelStatus, labelIssuedState, labelIssuedCountry, labelUsername, labelPassword, labelConfirmPassword );
     }
 
     private void group(Label label, TextField textField) {
@@ -49,6 +50,18 @@ public class NewUserPageController {
         comboBox.heightProperty().addListener( (observable, oldValue, newValue) -> {
             label.setPrefHeight( newValue.doubleValue() );
         } );
+    }
+
+    private void sizeLabels(Label... labels) {
+        double maxWidth = 150;
+        for (Label label : labels) {
+            if ( label.getWidth() > maxWidth ) {
+                maxWidth = label.getWidth();
+            }
+        }
+        for (Label label : labels) {
+            label.setPrefWidth( maxWidth );
+        }
     }
 
 
@@ -85,7 +98,7 @@ public class NewUserPageController {
         String issuedCountry = textFieldIssuedCountry.getText();
         String issuedState = textFieldIssuedCountry.getText();
         String username = textFieldUsername.getText();
-        String password = textFieldPassword.getText();
+        String password = passwordFieldPassword.getText();
         return new User(ID, username, password, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, false, null);
     }
 }

@@ -236,6 +236,24 @@
     -fx-border-color: #4f81bd;
 }
 
+#newUserPage{
+    -fx-padding: 0;
+}
+
+#newUserPage #titleWrapper{
+    -fx-padding: 10px 20px 10px 20px;
+    -fx-background-color: #4f81bd;
+}
+
+#newUserPage #labelTitle{
+    -fx-text-fill: white;
+    -fx-font-size: 1.5em;
+}
+
+#newUserPage #content, #newUserPage #bottomButtonWrapper{
+    -fx-padding: 20px;
+}
+
 #newUserPage .label{
     -fx-font-weight: bold;
 }

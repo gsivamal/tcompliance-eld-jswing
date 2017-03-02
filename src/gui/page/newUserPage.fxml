@@ -5,48 +5,71 @@
 <?import java.lang.String?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.NewUserPageController" fx:id="newUserPage" stylesheets="@../util.css, @../page.css">
     <top>
-        <HBox>
+        <StackPane fx:id="titleWrapper" alignment="CENTER_LEFT">
             <Label fx:id="labelTitle" text="New Driver User"/>
-        </HBox>
+        </StackPane>
     </top>
     <center>
         <fx:define>
             <Double fx:id="VERTICAL_SPACING" fx:value="20"/>
             <Double fx:id="HORIZONTAL_SPACING" fx:value="10"/>
-            <Double fx:id="DEFAULT_LABEL_HEIGHT" fx:value="26"/>
+            <Double fx:id="DEFAULT_LABEL_HEIGHT" fx:value="28"/>
+            <Double fx:id="GROUP_HORIZONTAL_SPACING" fx:value="150"/>
         </fx:define>
-        <VBox spacing="20">
+        <VBox spacing="20" fx:id="content">
             <Label/>
-            <HBox spacing="150" alignment="CENTER">
+            <HBox spacing="$GROUP_HORIZONTAL_SPACING" alignment="CENTER">
                 <HBox spacing="$HORIZONTAL_SPACING">
                     <VBox spacing="$VERTICAL_SPACING">
                         <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelID" text="ID"/>
                         <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelFirstName" text="First Name"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelMiddleName" text="Middle Name"/>
                         <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelLastName" text="Last Name"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelLicNumber" text="Lic #"/>
                     </VBox>
-
-
                     <VBox spacing="$VERTICAL_SPACING">
                         <TextField fx:id="textFieldID"/>
                         <TextField fx:id="textFieldFirstName"/>
-                        <TextField fx:id="textFieldMiddleName"/>
                         <TextField fx:id="textFieldLastName"/>
-                        <TextField fx:id="textFieldLicNumber"/>
                     </VBox>
                 </HBox>
-
                 <HBox spacing="$HORIZONTAL_SPACING">
                     <VBox spacing="$VERTICAL_SPACING">
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelStatus" text="Status"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelIssuedState" text="Issued State"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelIssuedCountry" text="Issued Country"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelUsername" text="Username"/>
-                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelPassword" text="Password"/>
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelMiddleName" text="Middle Name"/>
                     </VBox>
-
                     <VBox spacing="$VERTICAL_SPACING">
+                        <TextField fx:id="textFieldMiddleName"/>
+                    </VBox>
+                </HBox>
+            </HBox>
+            <Separator/>
+            <HBox spacing="$GROUP_HORIZONTAL_SPACING" alignment="CENTER">
+                <HBox spacing="$HORIZONTAL_SPACING">
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelLicNumber" text="Lic #"/>
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelIssuedCountry" text="Issued Country"/>
+                    </VBox>
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <TextField fx:id="textFieldLicNumber"/>
+                        <TextField fx:id="textFieldIssuedCountry"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="$HORIZONTAL_SPACING">
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelIssuedState" text="Issued State"/>
+                    </VBox>
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <TextField fx:id="textFieldIssuedState"/>
+                    </VBox>
+                </HBox>
+            </HBox>
+            <Separator/>
+            <HBox spacing="$GROUP_HORIZONTAL_SPACING" alignment="CENTER">
+                <HBox spacing="$HORIZONTAL_SPACING">
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelUsername" text="Username"/>
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelStatus" text="Status"/>
+                    </VBox>
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <TextField fx:id="textFieldUsername"/>
                         <ComboBox fx:id="comboBoxStatus">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
@@ -55,17 +78,23 @@
                                 </FXCollections>
                             </items>
                         </ComboBox>
-                        <TextField fx:id="textFieldIssuedState"/>
-                        <TextField fx:id="textFieldIssuedCountry"/>
-                        <TextField fx:id="textFieldUsername"/>
-                        <TextField fx:id="textFieldPassword"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="$HORIZONTAL_SPACING">
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelPassword" text="Password"/>
+                        <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelConfirmPassword" text="Confirm Password"/>
+                    </VBox>
+                    <VBox spacing="$VERTICAL_SPACING">
+                        <PasswordField fx:id="passwordFieldPassword"/>
+                        <PasswordField fx:id="passwordFieldConfirmPassword"/>
                     </VBox>
                 </HBox>
             </HBox>
         </VBox>
     </center>
     <bottom>
-        <VBox>
+        <VBox fx:id="bottomButtonWrapper">
             <Label/>
             <HBox alignment="CENTER_RIGHT" spacing="20">
                 <Button fx:id="buttonCancelNew" onAction="#buttonCancelNewClicked" text="Cancel"/>

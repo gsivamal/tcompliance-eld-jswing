@@ -16,6 +16,10 @@
     -fx-text-fill: #4f81bd;
 }
 
+.dialog-pane:no-header .graphic-container {
+    -fx-padding: 0; /* 10px 0px 0px 10px */
+}
+
 .dialog-pane > .button-bar Button{
     -fx-background-color: white;
     -fx-border-color: #4f81bd;
