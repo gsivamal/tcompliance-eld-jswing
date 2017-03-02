@@ -20,7 +20,7 @@ public class StartApplication extends Application {
         UserList userList = UserList.getInstance();
         Service service = new Service( "John", "" );
         service.setNotificationMessage( "There is a log update pending approval" );
-        User john = new User("1",  "John", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true, service );
+        User john = new User( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true, service );
         userList.add( john );
         launch();
     }
@@ -50,7 +50,7 @@ public class StartApplication extends Application {
         FXMLLoader loader = new FXMLLoader( getClass().getResource( "page.fxml" ) );
         Parent root = loader.load();
         pageController = loader.getController();
-        pageController.setPage( ControllerHelper.getAdminPage() );
+        pageController.setPage( ControllerHelper.getLoginPage() );
         primaryStage.setTitle("Driver's system");
         primaryStage.setScene( new Scene( root, 960, 670 ) );
         primaryStage.show();

@@ -18,9 +18,13 @@ public class User {
     private boolean isAdmin;
 
     private Service service;
+    private static int count = 0;
 
-    public User(String ID, String username, String password, String firstName, String middleName, String lastName, String licNumber, String status, String issuedState, String issuedCountry, boolean isAdmin, Service service) {
-        setID( ID );
+    public User(String username, String password, String confirmPassword, String firstName, String middleName, String lastName, String licNumber, String status, String issuedState, String issuedCountry, boolean isAdmin, Service service) {
+        if ( !password.equals( confirmPassword ) ) {
+            throw new IllegalArgumentException( "Passwords must match!" );
+        }
+        setID( String.valueOf( ++count ) );
         setUsername( username );
         this.password.set( password );
         setFirstName( firstName );

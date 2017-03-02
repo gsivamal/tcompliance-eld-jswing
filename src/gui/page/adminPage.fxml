@@ -14,7 +14,6 @@
                     <TableColumn fx:id="tableColumnLastName" text="Last name"/>
                     <TableColumn fx:id="tableColumnLicNumber" text="Lic #"/>
                     <TableColumn fx:id="tableColumnUsername" text="Username(email)"/>
-                    <TableColumn fx:id="tableColumnPassword" text="Password"/>
                     <TableColumn fx:id="tableColumnStatus" text="Status"/>
                 </columns>
             </TableView>

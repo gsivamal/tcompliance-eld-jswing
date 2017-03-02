@@ -18,7 +18,7 @@ public class AdminPageController {
     @FXML
     private TableView<User> tableUserList;
     @FXML
-    private TableColumn<User, String> tableColumnID, tableColumnFirstName, tableColumnLastName, tableColumnLicNumber, tableColumnUsername, tableColumnPassword, tableColumnStatus;
+    private TableColumn<User, String> tableColumnID, tableColumnFirstName, tableColumnLastName, tableColumnLicNumber, tableColumnUsername, tableColumnStatus;
     @FXML
     private Button buttonNew, buttonDisable, buttonDelete;
 
@@ -26,11 +26,10 @@ public class AdminPageController {
     private void initialize(){
         pageController.setTitle( new Label( "Driver/User List" ) );
         tableColumnID.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.06 ) );
-        tableColumnFirstName.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.2 ) );
-        tableColumnLastName.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.2 ) );
-        tableColumnLicNumber.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.12 ) );
+        tableColumnFirstName.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.235 ) );
+        tableColumnLastName.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.235 ) );
+        tableColumnLicNumber.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.20 ) );
         tableColumnUsername.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.1699 ) );
-        tableColumnPassword.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.15 ) );
         tableColumnStatus.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.1 ) );
         tableUserList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -39,7 +38,6 @@ public class AdminPageController {
         tableColumnLastName.setCellValueFactory( cellData -> cellData.getValue().lastNameProperty() );
         tableColumnLicNumber.setCellValueFactory( cellData -> cellData.getValue().licNumberProperty() );
         tableColumnUsername.setCellValueFactory( cellData -> cellData.getValue().usernameProperty() );
-        tableColumnPassword.setCellValueFactory( cellData -> cellData.getValue().passwordProperty() );
         tableColumnStatus.setCellValueFactory( cellData -> cellData.getValue().statusProperty() );
 
         tableUserList.setItems( UserList.getInstance().observableList() );

@@ -68,8 +68,12 @@ public class NewUserPageController {
     @FXML
     private void buttonSaveNewClicked(ActionEvent actionEvent) {
         if ( ControllerHelper.showConfirmationWindow( "Save", "Are you sure you want to save this user?" ) ) {
-            saveUser();
-            close();
+            try {
+                saveUser();
+                close();
+            } catch (Exception e) {
+                ControllerHelper.showErrorWindow( "Error", e.getMessage() );
+            }
         }
     }
 
@@ -88,6 +92,7 @@ public class NewUserPageController {
         UserList.getInstance().add( getUser() );
     }
 
+
     public User getUser(){
         String ID = textFieldID.getText();
         String firstName = textFieldFirstName.getText();
@@ -99,6 +104,7 @@ public class NewUserPageController {
         String issuedState = textFieldIssuedCountry.getText();
         String username = textFieldUsername.getText();
         String password = passwordFieldPassword.getText();
-        return new User(ID, username, password, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, false, null);
+        String confirmPassword = passwordFieldConfirmPassword.getText();
+        return new User( username, password, confirmPassword, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, false, null );
     }
 }
