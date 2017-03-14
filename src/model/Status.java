@@ -1,21 +1,22 @@
 package model;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Status {
+    private IntegerProperty statusID = new SimpleIntegerProperty();
     private ObjectProperty<StatusValue> statusValue = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDateTime> startTime = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDateTime> endTime = new SimpleObjectProperty<>();
     private ObjectProperty<Duration> duration = new SimpleObjectProperty<>();
-    private SimpleStringProperty location = new SimpleStringProperty( "Austin TX" );
-    private SimpleStringProperty notes = new SimpleStringProperty( "Notes" );
+    private StringProperty location = new SimpleStringProperty( "Austin TX" );
+    private StringProperty notes = new SimpleStringProperty( "Notes" );
+    private static int count = 1;
 
-    public Status(StatusValue statusValue, LocalDateTime startTime) {
+    public Status(Integer statusID, StatusValue statusValue, LocalDateTime startTime, LocalDateTime endTime) {
+        setStatusID( statusID );
         this.startTime.addListener( (observable, oldValue, newValue) -> {
             if(getEndTime() != null)
                 duration.set( Duration.between( getStartTime(), getEndTime() ) );
@@ -29,9 +30,6 @@ public class Status {
         setEndTime( startTime );
     }
 
-    public Status(StatusValue statusValue) {
-        this( statusValue, LocalDateTime.now() );
-    }
 
     public StatusValue getStatusValue() {
         return statusValue.get();
@@ -81,7 +79,7 @@ public class Status {
         return location.get();
     }
 
-    public SimpleStringProperty locationProperty() {
+    public StringProperty locationProperty() {
         return location;
     }
 
@@ -97,12 +95,24 @@ public class Status {
         return notes.get();
     }
 
-    public SimpleStringProperty notesProperty() {
+    public StringProperty notesProperty() {
         return notes;
     }
 
     public void setNotes(String notes) {
         this.notes.set( notes );
+    }
+
+    public int getStatusID() {
+        return statusID.get();
+    }
+
+    public IntegerProperty statusIDProperty() {
+        return statusID;
+    }
+
+    public void setStatusID(int statusID) {
+        this.statusID.set( statusID );
     }
 
     public enum StatusValue {
@@ -122,4 +132,5 @@ public class Status {
             return this.colorHexCode;
         }
     }
+
 }

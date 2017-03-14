@@ -24,7 +24,7 @@ public class DashboardTabController {
     @FXML
     private void initialize(){
 
-        labelCurrentStatus.setText( service.getCurrentStatus().getStatusValue().toString() );
+        labelCurrentStatus.setText( "" + service.getCurrentStatus().getStatusValue() );
         labelStartDateTime.setText( Clock.localDateTimeToString( service.getCurrentStatus().getStartTime() ) );
         service.currentStatusProperty().addListener( observable -> {
             if(service.getCurrentStatus() != null) {

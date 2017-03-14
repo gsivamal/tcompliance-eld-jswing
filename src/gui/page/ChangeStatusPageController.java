@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import model.Mediator;
 import model.Service;
 import model.Status;
+import model.factory.StatusFactory;
 
 public class ChangeStatusPageController {
 
@@ -27,7 +29,7 @@ public class ChangeStatusPageController {
             statusButton.getStylesheets().add( ControllerHelper.class.getResource( "util.css" ).toExternalForm() );
             statusButton.setOnAction( event -> {
                 Status.StatusValue buttonStatusValue = Status.StatusValue.valueOf( statusButton.getText() );
-                service.setCurrentStatus( new Status( buttonStatusValue ) );
+                Mediator.getInstance().addStatus( service, StatusFactory.getInstance().createStatus( buttonStatusValue ));
                 close();
             } );
             changeStatusPage.getChildren().add( statusButton );

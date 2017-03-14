@@ -6,8 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
+import model.Mediator;
 import model.User;
-import model.UserList;
 
 
 public class AdminPageController {
@@ -40,7 +40,7 @@ public class AdminPageController {
         tableColumnUsername.setCellValueFactory( cellData -> cellData.getValue().usernameProperty() );
         tableColumnStatus.setCellValueFactory( cellData -> cellData.getValue().statusProperty() );
 
-        tableUserList.setItems( UserList.getInstance().observableList() );
+        tableUserList.setItems( Mediator.getInstance().getUserList() );
 
 
 
@@ -73,7 +73,7 @@ public class AdminPageController {
         User selected = getSelected();
         if ( selected != null ) {
             if ( ControllerHelper.showConfirmationWindow( "Delete user", "Are you sure you want to delete user ID: " + selected.getID() ) ) {
-                UserList.getInstance().remove( selected );
+                Mediator.getInstance().removeUser( selected );
             }
         }
     }

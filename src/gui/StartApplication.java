@@ -1,5 +1,6 @@
 package gui;
 
+import dao.DbUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -8,20 +9,31 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Clock;
-import model.Service;
-import model.User;
-import model.UserList;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class StartApplication extends Application {
 
     public static void main(String[] args) {
-        UserList userList = UserList.getInstance();
-        Service service = new Service( "John", "" );
+        try {
+            DbUtil.initializeTables( DbUtil.getConnection() );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+/*        Mediator mediator = Mediator.getInstance();
+        User john = UserFactory.getInstance().createUser( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true, null );
+        Service service = ServiceFactory.getInstance().createService( john, null );
+        john.setService( service );
         service.setNotificationMessage( "There is a log update pending approval" );
-        User john = new User( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true, service );
-        userList.add( john );
+        RulesList rules = new RulesList();
+        rules.add( new Rule( "Rule 1" ) );
+        rules.add( new Rule( "Rule 2" ) );
+        rules.add( new Rule( "Rule 3" ) );
+        rules.add( new Rule( "Rule 4" ) );
+        service.setRules( rules );
+        mediator.addService(service);
+        mediator.addUser( john );*/
         launch();
     }
 

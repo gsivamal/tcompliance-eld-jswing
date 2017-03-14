@@ -6,8 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Mediator;
 import model.User;
-import model.UserList;
+import model.factory.UserFactory;
 
 public class NewUserPageController {
 
@@ -89,7 +90,7 @@ public class NewUserPageController {
     }
 
     private void saveUser(){
-        UserList.getInstance().add( getUser() );
+        Mediator.getInstance().addUser( getUser() );
     }
 
 
@@ -105,6 +106,6 @@ public class NewUserPageController {
         String username = textFieldUsername.getText();
         String password = passwordFieldPassword.getText();
         String confirmPassword = passwordFieldConfirmPassword.getText();
-        return new User( username, password, confirmPassword, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, false, null );
+        return UserFactory.getInstance().createUser( username, password, confirmPassword, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, false, null );
     }
 }

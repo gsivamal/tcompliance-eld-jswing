@@ -2,6 +2,7 @@ package gui.page;
 
 import gui.ControllerHelper;
 import gui.PageController;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -40,8 +41,8 @@ public class HoSPageController {
         labelDateValue.textProperty().bind( service.startDateProperty() );
 
 
-        labelDriverValue.textProperty().bind( service.driverNameProperty() );
-        labelCoDriverValue.textProperty().bind( service.coDriverNameProperty() );
+        labelDriverValue.textProperty().bind( service.driverProperty().get().firstNameProperty() );
+        labelCoDriverValue.textProperty().bind( service.coDriverProperty().get() == null ? new SimpleStringProperty( "" ) : service.coDriverProperty().get().firstNameProperty() );
         labelNotificationMessage.textProperty().bind( service.notificationMessageProperty() );
 
     }
