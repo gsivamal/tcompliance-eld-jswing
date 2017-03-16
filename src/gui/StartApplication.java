@@ -9,8 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Clock;
+import model.Driver;
 import model.GPSLocation;
 import model.Mediator;
+import model.factory.DriverFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -26,8 +28,11 @@ public class StartApplication extends Application {
         GPSLocation.updateLatestGPSLocation( "Austin AX", 15.22, 16.34 );
         Mediator mediator = Mediator.getInstance();
         //Uncomment for first run.
-/*        Driver john = DriverFactory.getInstance().getDriver( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true );
-        mediator.addDriver( john );*/
+        int driverCount = DbUtil.getCount( "driver" );
+        if ( driverCount == 0 ) {
+            Driver john = DriverFactory.getInstance().getDriver( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true );
+            mediator.addDriver( john );
+        }
 
 
         launch();
