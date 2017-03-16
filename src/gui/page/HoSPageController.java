@@ -3,13 +3,17 @@ package gui.page;
 import gui.ControllerHelper;
 import gui.PageController;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.StageStyle;
-import model.Service;
+import model.Clock;
+import model.Driver;
+import model.Logbook;
+import model.LogbookList;
 
 public class HoSPageController {
 
@@ -19,31 +23,32 @@ public class HoSPageController {
     private Button buttonCurrentStatusValue;
 
 
-    private Service service;
+    private Driver driver;
+    private LogbookList logbookList;
     private PageController pageController = PageController.getInstance();
 
     @FXML
     private void initialize(){
         pageController.setTitle( new Label("Hours of Service") );
-        this.service = pageController.getUser().getService();
+        this.driver = pageController.getDriver();
+        this.logbookList = driver.getLogbookList();
 
-        String colorHexCode1 = service.getCurrentStatus().getStatusValue().getColorHexCode();
+        String colorHexCode1 = logbookList.last().getDutyStatus().getColorHexCode();
         buttonCurrentStatusValue.setStyle( "-fx-background-color: " + colorHexCode1 + ";" );
-        buttonCurrentStatusValue.setText( service.getCurrentStatus().getStatusValue().toString() );
+        buttonCurrentStatusValue.setText( logbookList.last().getDutyStatus().toString() );
 
-        service.currentStatusProperty().addListener( observable -> {
-            if(service.getCurrentStatus() != null) {
-                String colorHexCode = service.getCurrentStatus().getStatusValue().getColorHexCode();
+        logbookList.addListener( (ListChangeListener<Logbook>) changeListener -> {
+            if ( changeListener.next() && logbookList.last() != null ) {
+                String colorHexCode = logbookList.last().getDutyStatus().getColorHexCode();
                 buttonCurrentStatusValue.setStyle( "-fx-background-color: " + colorHexCode + ";" );
-                buttonCurrentStatusValue.setText( service.getCurrentStatus().getStatusValue().toString() );
+                buttonCurrentStatusValue.setText( logbookList.last().getDutyStatus().toString() );
             }
         } );
-        labelDateValue.textProperty().bind( service.startDateProperty() );
+        labelDateValue.setText( logbookList.first().getStartTime().format( Clock.formatter ) );
 
 
-        labelDriverValue.textProperty().bind( service.driverProperty().get().firstNameProperty() );
-        labelCoDriverValue.textProperty().bind( service.coDriverProperty().get() == null ? new SimpleStringProperty( "" ) : service.coDriverProperty().get().firstNameProperty() );
-        labelNotificationMessage.textProperty().bind( service.notificationMessageProperty() );
+        labelDriverValue.textProperty().bind( driver.firstNameProperty() );
+        labelNotificationMessage.textProperty().bind( new SimpleStringProperty( "Notification message" ) );
 
     }
 

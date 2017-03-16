@@ -2,12 +2,13 @@ package gui.page;
 
 import gui.ControllerHelper;
 import gui.PageController;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
+import model.Driver;
 import model.Mediator;
-import model.User;
 
 
 public class AdminPageController {
@@ -16,15 +17,15 @@ public class AdminPageController {
 
     private PageController pageController = PageController.getInstance();
     @FXML
-    private TableView<User> tableUserList;
+    private TableView<Driver> tableUserList;
     @FXML
-    private TableColumn<User, String> tableColumnID, tableColumnFirstName, tableColumnLastName, tableColumnLicNumber, tableColumnUsername, tableColumnStatus;
+    private TableColumn<Driver, String> tableColumnID, tableColumnFirstName, tableColumnLastName, tableColumnLicNumber, tableColumnUsername, tableColumnStatus;
     @FXML
     private Button buttonNew, buttonDisable, buttonDelete;
 
     @FXML
     private void initialize(){
-        pageController.setTitle( new Label( "Driver/User List" ) );
+        pageController.setTitle( new Label( "Driver/Driver List" ) );
         tableColumnID.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.06 ) );
         tableColumnFirstName.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.235 ) );
         tableColumnLastName.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.235 ) );
@@ -33,14 +34,14 @@ public class AdminPageController {
         tableColumnStatus.prefWidthProperty().bind( tableUserList.widthProperty().multiply( 0.1 ) );
         tableUserList.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        tableColumnID.setCellValueFactory( cellData -> cellData.getValue().IDProperty() );
+        tableColumnID.setCellValueFactory( cellData -> new SimpleStringProperty( String.valueOf( cellData.getValue().getID() ) ) );
         tableColumnFirstName.setCellValueFactory( cellData -> cellData.getValue().firstNameProperty() );
         tableColumnLastName.setCellValueFactory( cellData -> cellData.getValue().lastNameProperty() );
         tableColumnLicNumber.setCellValueFactory( cellData -> cellData.getValue().licNumberProperty() );
         tableColumnUsername.setCellValueFactory( cellData -> cellData.getValue().usernameProperty() );
         tableColumnStatus.setCellValueFactory( cellData -> cellData.getValue().statusProperty() );
 
-        tableUserList.setItems( Mediator.getInstance().getUserList() );
+        tableUserList.setItems( Mediator.getInstance().getDriverList() );
 
 
 
@@ -60,7 +61,7 @@ public class AdminPageController {
 
     @FXML
     private void buttonDisableClicked(ActionEvent actionEvent) {
-        User selected = getSelected();
+        Driver selected = getSelected();
         if ( selected != null ) {
             if ( ControllerHelper.showConfirmationWindow( "Disable user", "Are you sure you want to disable user ID: " + selected.getID() ) ) {
                 selected.setStatus( "Inactive" );
@@ -70,15 +71,15 @@ public class AdminPageController {
 
     @FXML
     private void buttonDeleteClicked(ActionEvent actionEvent) {
-        User selected = getSelected();
+        Driver selected = getSelected();
         if ( selected != null ) {
             if ( ControllerHelper.showConfirmationWindow( "Delete user", "Are you sure you want to delete user ID: " + selected.getID() ) ) {
-                Mediator.getInstance().removeUser( selected );
+                Mediator.getInstance().removeDriver( selected );
             }
         }
     }
 
-    private User getSelected(){
+    private Driver getSelected(){
         return tableUserList.getSelectionModel().getSelectedItem();
     }
 }

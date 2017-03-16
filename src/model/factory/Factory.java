@@ -1,9 +1,11 @@
 package model.factory;
 
-public abstract class Factory {
+import java.util.HashMap;
+
+public abstract class Factory<T> {
 
     private int count = 0;
-
+    protected HashMap<Integer, T> cachedObjects = new HashMap<Integer, T>();
 
     public int getCount() {
         return count;

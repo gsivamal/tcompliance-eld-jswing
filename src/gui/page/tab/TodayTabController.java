@@ -5,9 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import model.Clock;
-import model.Service;
-import model.Status;
+import model.*;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -16,7 +14,7 @@ import java.time.LocalDateTime;
 public class TodayTabController {
 
     private PageController pageController = PageController.getInstance();
-    private Service service;
+    private Driver driver;
 
     @FXML
     private Parent todayTab;
@@ -25,18 +23,18 @@ public class TodayTabController {
     @FXML
     private Button buttonPreviousDay, buttonNextDay, buttonPrint;
     @FXML
-    private TableView<Status> tableToday;
+    private TableView<Logbook> tableToday;
     @FXML
-    private TableColumn<Status, String> tableColumnDuty, tableColumnLocation, tableColumnNotes;
+    private TableColumn<Logbook, String> tableColumnDuty, tableColumnLocation, tableColumnNotes;
     @FXML
-    private TableColumn<Status, LocalDateTime> tableColumnStart;
+    private TableColumn<Logbook, LocalDateTime> tableColumnStart;
     @FXML
-    private TableColumn<Status, Duration> tableColumnDuration;
+    private TableColumn<Logbook, Duration> tableColumnDuration;
 
 
     @FXML
     private void initialize(){
-        this.service = pageController.getUser().getService();
+        this.driver = pageController.getDriver();
         datePickerSelectedDay.setValue( LocalDate.now() );
         tableColumnDuty.prefWidthProperty().bind( tableToday.widthProperty().multiply( 0.197 ) );
         tableColumnStart.prefWidthProperty().bind( tableToday.widthProperty().multiply( 0.20 ) );
@@ -44,13 +42,13 @@ public class TodayTabController {
         tableColumnLocation.prefWidthProperty().bind( tableToday.widthProperty().multiply( 0.2 ) );
         tableColumnNotes.prefWidthProperty().bind( tableToday.widthProperty().multiply( 0.2 ) );
 
-        tableColumnDuty.setCellValueFactory( cellData -> cellData.getValue().statusValueProperty().asString() );
+        tableColumnDuty.setCellValueFactory( cellData -> cellData.getValue().dutyStatusProperty().asString() );
         tableColumnStart.setCellValueFactory( cellData -> cellData.getValue().startTimeProperty() );
         tableColumnDuration.setCellValueFactory( cellData -> cellData.getValue().durationProperty() );
-        tableColumnLocation.setCellValueFactory( cellData -> cellData.getValue().locationProperty() );
+        tableColumnLocation.setCellValueFactory( cellData -> cellData.getValue().gpsLocationProperty().asString() );
         tableColumnNotes.setCellValueFactory( cellData -> cellData.getValue().notesProperty() );
 
-        tableColumnStart.setCellFactory( col -> new TableCell<Status, LocalDateTime>() {
+        tableColumnStart.setCellFactory( col -> new TableCell<Logbook, LocalDateTime>() {
             @Override
             protected void updateItem(LocalDateTime item, boolean empty) {
                 super.updateItem( item, empty );
@@ -60,7 +58,7 @@ public class TodayTabController {
                     setText( Clock.localDateTimeToString( item ) );
             }
         } );
-        tableColumnDuration.setCellFactory( colum -> new TableCell<Status, Duration>(){
+        tableColumnDuration.setCellFactory( colum -> new TableCell<Logbook, Duration>(){
             @Override
             protected void updateItem(Duration duration, boolean empty) {
                 super.updateItem( duration, empty );
@@ -72,7 +70,7 @@ public class TodayTabController {
             }
         } );
 
-        tableToday.setItems( service.getStatusHistory().observableList() );
+        tableToday.setItems( driver.getLogbookList() );
     }
 
     @FXML

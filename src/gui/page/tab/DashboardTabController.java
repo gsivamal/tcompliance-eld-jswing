@@ -2,12 +2,15 @@ package gui.page.tab;
 
 import gui.PageController;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import model.Clock;
-import model.Service;
+import model.Driver;
+import model.Logbook;
+import model.Mediator;
 
 import java.time.Duration;
 
@@ -19,22 +22,23 @@ public class DashboardTabController {
     private PieChart pieChartRule1, pieChartRule2, pieChartRule3, pieChartRule4;
 
     private PageController pageController = PageController.getInstance();
-    private Service service = pageController.getUser().getService();
+    private Driver driver = Mediator.getInstance().getLoggedDriver();
 
     @FXML
     private void initialize(){
 
-        labelCurrentStatus.setText( "" + service.getCurrentStatus().getStatusValue() );
-        labelStartDateTime.setText( Clock.localDateTimeToString( service.getCurrentStatus().getStartTime() ) );
-        service.currentStatusProperty().addListener( observable -> {
-            if(service.getCurrentStatus() != null) {
-                labelCurrentStatus.setText( service.getCurrentStatus().getStatusValue().toString() );
-                labelStartDateTime.setText( Clock.localDateTimeToString( service.getCurrentStatus().getStartTime() ) );
+        labelCurrentStatus.setText( "" + driver.getLogbookList().last().getDutyStatus() );
+        labelStartDateTime.setText( Clock.localDateTimeToString( driver.getLogbookList().last().getStartTime() ) );
+
+        driver.getLogbookList().addListener( (ListChangeListener<Logbook>) changeListener -> {
+            if ( changeListener.next() && driver.getLogbookList().last() != null ) {
+                labelCurrentStatus.setText( driver.getLogbookList().last().getDutyStatus().toString() );
+                labelStartDateTime.setText( Clock.localDateTimeToString( driver.getLogbookList().last().getStartTime() ) );
             }
         } );
         Clock.currentTimeProperty().addListener( observable -> {
                 labelCurrentTime.setText( Clock.localDateTimeToString( Clock.currentTimeProperty().get() ) );
-                labelDuration.setText( Clock.durationToString( Duration.between( service.getCurrentStatus().getStartTime(), Clock.currentTimeProperty().get() ) ) );
+                labelDuration.setText( Clock.durationToString( Duration.between( driver.getLogbookList().last().getStartTime(), Clock.currentTimeProperty().get() ) ) );
         });
 
         ObservableList<PieChart.Data> pieChartData1 = FXCollections.observableArrayList( new PieChart.Data( "Work", 60 ), new PieChart.Data( "Free", 40 ) );

@@ -7,14 +7,16 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import model.Service;
+import model.Driver;
+import model.LogbookList;
 
 import java.time.LocalDate;
 
 public class GraphTabController {
 
     private PageController pageController = PageController.getInstance();
-    private Service service;
+    private Driver driver;
+    private LogbookList logbookList;
 
     @FXML
     private Button buttonNextDay, buttonPreviousDay, buttonPrint;
@@ -25,10 +27,10 @@ public class GraphTabController {
 
     @FXML
     private void initialize(){
-        this.service = pageController.getUser().getService();
+        this.logbookList = pageController.getDriver().getLogbookList();
         datePickerSelectedDay.setValue( LocalDate.now() );
         XYChart.Series<Integer, String> series = new XYChart.Series();
-        series.setData( service.getStatusHistory().chartData() );
+        series.setData( logbookList.chartData() );
         lineChartGraph.getData().add( series );
     }
 

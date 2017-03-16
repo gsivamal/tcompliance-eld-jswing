@@ -3,9 +3,9 @@ package model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class User {
+public class Driver {
 
-    private StringProperty ID = new SimpleStringProperty();
+    private int ID;
     private StringProperty username = new SimpleStringProperty();
     private StringProperty password = new SimpleStringProperty();
     private StringProperty firstName = new SimpleStringProperty();
@@ -15,12 +15,11 @@ public class User {
     private StringProperty status = new SimpleStringProperty();
     private StringProperty issuedState = new SimpleStringProperty();
     private StringProperty issuedCountry = new SimpleStringProperty();
+    private LogbookList logbookList;
     private boolean isAdmin;
 
-    private Service service;
-
-    public User(Integer ID, String username, String password, String firstName, String middleName, String lastName, String licNumber, String status, String issuedState, String issuedCountry, boolean isAdmin, Service service) {
-        setID( String.valueOf( ID ) );
+    public Driver(int ID, String username, String password, String firstName, String middleName, String lastName, String licNumber, String status, String issuedState, String issuedCountry, boolean isAdmin, LogbookList logbookList) {
+        setID( ID );
         setUsername( username );
         this.password.set( password );
         setFirstName( firstName );
@@ -31,7 +30,7 @@ public class User {
         setIssuedState( issuedState );
         setIssuedCountry( issuedCountry );
         setAdmin( isAdmin );
-        setService( service );
+        setLogbookList( logbookList );
     }
 
 
@@ -41,10 +40,6 @@ public class User {
 
     public boolean checkPassword(String checkingPassword) {
         return password.get().equals( checkingPassword );
-    }
-
-    public Service getService() {
-        return service;
     }
 
     public StringProperty usernameProperty() {
@@ -139,10 +134,6 @@ public class User {
         this.issuedCountry.set( issuedCountry );
     }
 
-    public void setService(Service service) {
-        this.service = service;
-    }
-
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -151,16 +142,12 @@ public class User {
         isAdmin = admin;
     }
 
-    public String getID() {
-        return ID.get();
-    }
-
-    public StringProperty IDProperty() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
-        this.ID.set( ID );
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getPassword() {
@@ -175,9 +162,17 @@ public class User {
         this.password.set( password );
     }
 
+    public void setLogbookList(LogbookList logbookList) {
+        this.logbookList = logbookList;
+    }
+
+    public LogbookList getLogbookList(){
+        return this.logbookList;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Driver{" +
                 "username=" + getUsername() +
                 ", password=" + getPassword() +
                 '}';

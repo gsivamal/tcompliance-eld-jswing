@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Driver;
 import model.Mediator;
-import model.User;
-import model.factory.UserFactory;
+import model.factory.DriverFactory;
 
 public class NewUserPageController {
 
@@ -90,11 +90,11 @@ public class NewUserPageController {
     }
 
     private void saveUser(){
-        Mediator.getInstance().addUser( getUser() );
+        Mediator.getInstance().addDriver( getUser() );
     }
 
 
-    public User getUser(){
+    public Driver getUser(){
         String ID = textFieldID.getText();
         String firstName = textFieldFirstName.getText();
         String middleName = textFieldMiddleName.getText();
@@ -106,6 +106,6 @@ public class NewUserPageController {
         String username = textFieldUsername.getText();
         String password = passwordFieldPassword.getText();
         String confirmPassword = passwordFieldConfirmPassword.getText();
-        return UserFactory.getInstance().createUser( username, password, confirmPassword, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, false, null );
+        return DriverFactory.getInstance().getDriver( username, password, confirmPassword, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, false );
     }
 }

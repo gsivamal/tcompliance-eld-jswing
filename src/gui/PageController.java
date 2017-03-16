@@ -11,14 +11,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.User;
+import model.Driver;
 
 public class PageController {
 
     @FXML
     private Parent page;
 
-    private User user;
+    private Driver driver;
 
     private Parent contentPage = new Pane();
     private Node titleNode;
@@ -63,15 +63,15 @@ public class PageController {
         in.play();
     }
 
-    public User getUser(){
-        return this.user;
+    public Driver getDriver(){
+        return this.driver;
     }
 
-    public void login(User user, boolean isAdminLogin) {
-        this.user = user;
-        this.labelFooterUsername.setText( user.getUsername() );
-        this.labelFooterRole.setText( user.isAdmin() ? "Admin" : "Driver" );
-        if ( isAdminLogin && user.isAdmin() ) {
+    public void login(Driver driver, boolean isAdminLogin) {
+        this.driver = driver;
+        this.labelFooterUsername.setText( driver.getUsername() );
+        this.labelFooterRole.setText( driver.isAdmin() ? "Admin" : "Driver" );
+        if ( isAdminLogin && driver.isAdmin() ) {
             setPage( ControllerHelper.getAdminPage() );
         } else {
             setPage( ControllerHelper.getStartPage() );
@@ -86,7 +86,7 @@ public class PageController {
     @FXML
     private void menuItemSwitchAccountClicked(ActionEvent actionEvent) {
         if ( ControllerHelper.showConfirmationWindow( "Switch Account", "Are you sure you want to switch account?" ) ) {
-            this.user = null;
+            this.driver = null;
             ControllerHelper.clearAllPages();
             setPage( ControllerHelper.getLoginPage() );
         }

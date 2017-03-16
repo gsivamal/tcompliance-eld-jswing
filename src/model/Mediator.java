@@ -1,91 +1,117 @@
 package model;
 
-import dao.DriverDatabaseDAO;
-import dao.ServiceDatabaseDAO;
-import dao.StatusDatabaseDAO;
-import model.factory.ServiceFactory;
-import model.factory.StatusFactory;
-import model.factory.UserFactory;
+import dao.*;
+import model.factory.*;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class Mediator {
 
-    private UserList userList;
-    private ArrayList<Service> serviceList;
-    private DriverDatabaseDAO driverDatabase;
-    private ServiceDatabaseDAO serviceDatabase;
-    private StatusDatabaseDAO statusDatabase;
+    private DriverList driverList;
+    private VehicleList vehicleList;
+    private Driver loggedDriver;
+    private DriverDatabaseDAO driverDatabase = DriverDatabaseDAO.getInstance();
+    private LogbookDatabaseDAO logbookDatabase = LogbookDatabaseDAO.getInstance();
+    private FuelCardDatabaseDAO fuelCardDatabase = FuelCardDatabaseDAO.getInstance();
+    private LoadDatabaseDAO loadDatabase = LoadDatabaseDAO.getInstance();
+    private VehicleDatabaseDAO vehicleDatabase = VehicleDatabaseDAO.getInstance();
 
 
     private static final Mediator instance = new Mediator();
-
     public static Mediator getInstance(){
         return instance;
     }
 
     private Mediator(){
-        driverDatabase = new DriverDatabaseDAO();
-        serviceDatabase = new ServiceDatabaseDAO();
-        statusDatabase = new StatusDatabaseDAO();
-        ServiceFactory.getInstance().setCount( serviceDatabase.getCount() );
-        UserFactory.getInstance().setCount( driverDatabase.getCount() );
-        StatusFactory.getInstance().setCount( statusDatabase.getCount() );
-        serviceList = serviceDatabase.getAll();
-        userList = driverDatabase.getAll();
-        for (User user : userList) {
-            user.setService( getServiceByDriverID( user.getID() ) );
+        driverList = driverDatabase.getAll();
+        vehicleList = vehicleDatabase.getAll();
+        DriverFactory.getInstance().setCount( DbUtil.getCount( "driver" ) );
+        FuelCardFactory.getInstance().setCount( DbUtil.getCount( "fuel_card" ) );
+        LoadFactory.getInstance().setCount( DbUtil.getCount( "load" ) );
+        LogbookFactory.getInstance().setCount( DbUtil.getCount( "logbook" ) );
+        VehicleFactory.getInstance().setCount( DbUtil.getCount( "equipment" ) );
+        LogbookStatus.insertValuesDatabase();
+        DutyStatus.insertValuesDatabase();
+    }
+
+
+    public void addDriver(Driver driver) {
+        driverList.add( driver );
+        driverDatabase.add( driver );
+    }
+    public void updateDriver(Driver driver) {
+        driverDatabase.update( driver );
+    }
+    public void removeDriver(Driver driver) {
+        driverList.remove( driver );
+        driverDatabase.remove( driver );
+    }
+    public Driver login(String username, String password) {
+        loggedDriver = driverList.getDriver( username, password );
+        return loggedDriver;
+    }
+    public Driver getLoggedDriver(){
+        return loggedDriver;
+    }
+
+    public void changeStatus(LogbookStatus approveStatus, String additionalInfo, String notes, DutyStatus newStatus) {
+        if ( getLoggedDriver().getLogbookList().last().getDutyStatus().equals( newStatus ) ) {
+            return;
         }
+        LocalDateTime endTime = LocalDateTime.now();
+        LocalDateTime approveTime = LocalDateTime.now();
+        Logbook newLogbook = LogbookFactory.getInstance().getLogbook( newStatus );
+        changeStatus( endTime, approveStatus, approveTime, 100, additionalInfo, notes, newLogbook);
     }
 
-    public Service getServiceByDriverID(String driverID) {
-        for (Service service : serviceList) {
-            if ( service.getDriver().getID().equals( driverID ) ) {
-                return service;
-            }
-        }
-        return null;
+    private void changeStatus(LocalDateTime endTime, LogbookStatus logbookStatus, LocalDateTime approveTime, int mileage, String additionalInfo, String notes, Logbook newStatus) {
+        LogbookList logbookList = getLoggedDriver().getLogbookList();
+        Logbook update = logbookList.last();
+        logbookList.changeStatus( endTime, logbookStatus, approveTime, mileage, additionalInfo, notes, newStatus );
+        Logbook add = logbookList.last();
+        logbookDatabase.update( update );
+        logbookDatabase.add( add );
     }
 
-    public void addUser(User user) {
-        userList.add( user );
-        driverDatabase.add( user );
+
+    public void addFuelCard(FuelCard fuelCard) {
+        fuelCardDatabase.add( fuelCard );
+    }
+    public void updateFuelCard(FuelCard fuelCard) {
+        fuelCardDatabase.update( fuelCard );
+    }
+    public void removeFuelCard(FuelCard fuelCard) {
+        fuelCardDatabase.remove( fuelCard );
     }
 
-    public void removeUser(User user) {
-        userList.remove( user );
-        driverDatabase.remove( user );
+    public void addVehicle(Vehicle vehicle) {
+        vehicleList.add( vehicle );
+        vehicleDatabase.add( vehicle );
+    }
+    public void updateVehicle(Vehicle vehicle) {
+        vehicleDatabase.update( vehicle );
+    }
+    public void removeVehicle(Vehicle vehicle) {
+        vehicleList.remove( vehicle );
+        vehicleDatabase.remove( vehicle );
     }
 
-    public void addService(Service service) {
-        serviceList.add( service );
-        serviceDatabase.add( service );
+    public void addLoad(Load load) {
+        loadDatabase.add( load );
+    }
+    public void updateLoad(Load load) {
+        loadDatabase.update( load );
+    }
+    public void removeLoad(Load load){
+        loadDatabase.remove( load );
     }
 
-    public void editService(Service service) {
-        serviceDatabase.update( service );
+    public DriverList getDriverList(){
+        return driverList;
     }
 
-    public void removeService(Service service) {
-        serviceList.remove( service );
-        serviceDatabase.remove( service );
-    }
-
-    public void addStatus(Service service, Status status) {
-        service.setCurrentStatus( status );
-        statusDatabase.add( service, status );
-    }
-
-    public void updateStatus(Service service, Status status) {
-        statusDatabase.update( service, status );
-    }
-
-    public void removeStatus(Status status) {
-        statusDatabase.remove( status );
-    }
-
-    public UserList getUserList() {
-        return userList;
+    public VehicleList getVehicleList(){
+        return vehicleList;
     }
 
 }

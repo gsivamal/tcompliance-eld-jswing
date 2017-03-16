@@ -1,7 +1,7 @@
 package dao;
 
-import model.User;
-import model.UserList;
+import model.Driver;
+import model.DriverList;
 
-public interface DriverDao extends Dao<User, UserList>{
+public interface DriverDao extends Dao<Driver, DriverList>{
 }

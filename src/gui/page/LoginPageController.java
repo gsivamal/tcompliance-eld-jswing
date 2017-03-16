@@ -10,8 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import model.Driver;
 import model.Mediator;
-import model.User;
 
 public class LoginPageController {
 
@@ -63,12 +63,12 @@ public class LoginPageController {
 
 
     private void login(){
-        User user = Mediator.getInstance().getUserList().getUser( getUserName(), getPassword() );
-        if( user == null){
-            ControllerHelper.showErrorWindow( "No user", "Make sure you entered right username and password\n\n\n\n\n" );
+        Driver driver = Mediator.getInstance().login( getUserName(), getPassword() );
+        if( driver == null){
+            ControllerHelper.showErrorWindow( "No driver", "Make sure you entered right username and password\n\n\n\n\n" );
             return;
         }
-        pageController.login( user, isAdminLogin() );
+        pageController.login( driver, isAdminLogin() );
     }
 
     private boolean isAdminLogin(){

@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Clock {
 
     private static SimpleObjectProperty<LocalDateTime> currentTime = new SimpleObjectProperty<>();
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 
     private Clock(){
 

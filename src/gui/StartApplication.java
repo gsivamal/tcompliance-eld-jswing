@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Clock;
+import model.GPSLocation;
+import model.Mediator;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -21,19 +23,13 @@ public class StartApplication extends Application {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-/*        Mediator mediator = Mediator.getInstance();
-        User john = UserFactory.getInstance().createUser( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true, null );
-        Service service = ServiceFactory.getInstance().createService( john, null );
-        john.setService( service );
-        service.setNotificationMessage( "There is a log update pending approval" );
-        RulesList rules = new RulesList();
-        rules.add( new Rule( "Rule 1" ) );
-        rules.add( new Rule( "Rule 2" ) );
-        rules.add( new Rule( "Rule 3" ) );
-        rules.add( new Rule( "Rule 4" ) );
-        service.setRules( rules );
-        mediator.addService(service);
-        mediator.addUser( john );*/
+        GPSLocation.updateLatestGPSLocation( "Austin AX", 15.22, 16.34 );
+        Mediator mediator = Mediator.getInstance();
+        //Uncomment for first run.
+/*        Driver john = DriverFactory.getInstance().getDriver( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true );
+        mediator.addDriver( john );*/
+
+
         launch();
     }
 
