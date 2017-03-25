@@ -35,7 +35,6 @@ public class TodayTabController {
     @FXML
     private void initialize(){
         this.driver = pageController.getDriver();
-        datePickerSelectedDay.setValue( LocalDate.now() );
         tableColumnDuty.prefWidthProperty().bind( tableToday.widthProperty().multiply( 0.197 ) );
         tableColumnStart.prefWidthProperty().bind( tableToday.widthProperty().multiply( 0.20 ) );
         tableColumnDuration.prefWidthProperty().bind( tableToday.widthProperty().multiply( 0.2 ) );
@@ -58,7 +57,7 @@ public class TodayTabController {
                     setText( Clock.localDateTimeToString( item ) );
             }
         } );
-        tableColumnDuration.setCellFactory( colum -> new TableCell<Logbook, Duration>(){
+        tableColumnDuration.setCellFactory( column -> new TableCell<Logbook, Duration>(){
             @Override
             protected void updateItem(Duration duration, boolean empty) {
                 super.updateItem( duration, empty );
@@ -70,7 +69,10 @@ public class TodayTabController {
             }
         } );
 
-        tableToday.setItems( driver.getLogbookList() );
+        datePickerSelectedDay.valueProperty().addListener( observable -> {
+            selectedDayValueChanged();
+        } );
+        datePickerSelectedDay.setValue( LocalDate.now() );
     }
 
     @FXML
@@ -85,5 +87,11 @@ public class TodayTabController {
 
     @FXML
     private void buttonPrintClicked(ActionEvent actionEvent) {
+    }
+
+
+    private void selectedDayValueChanged(){
+        LocalDate selectedDay = datePickerSelectedDay.getValue();
+        tableToday.setItems( driver.getLogbookList().getForDay( selectedDay ) );
     }
 }

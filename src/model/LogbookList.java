@@ -6,6 +6,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class LogbookList extends SimpleListProperty<Logbook> {
@@ -44,5 +45,13 @@ public class LogbookList extends SimpleListProperty<Logbook> {
 
     public ObservableList<XYChart.Data<Integer, String>> chartData(){
         return chartData;
+    }
+
+    //Returns filtered logbook list.
+    //Passes if logbook is between start date and end date(including both)
+    public ObservableList<Logbook> getForDay(LocalDate localDate) {
+        return filtered( logbook -> ( logbook.getStartTime().toLocalDate().isEqual( localDate )
+                || ( localDate.isAfter( logbook.getStartTime().toLocalDate() ) && localDate.isBefore( logbook.getEndTime().toLocalDate() ) )
+                || logbook.getEndTime().toLocalDate().isEqual( localDate ) ) );
     }
 }
