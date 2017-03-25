@@ -6,6 +6,7 @@ import model.FuelCard;
 import model.Load;
 import model.Vehicle;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class LoadFactory extends Factory<Load> {
@@ -37,7 +38,11 @@ public class LoadFactory extends Factory<Load> {
     public Load getLoad(int loadID) {
         Load load = cachedObjects.get( loadID );
         if ( load == null ) {
-            load = LoadDatabaseDAO.getInstance().get( loadID );
+            try {
+                load = LoadDatabaseDAO.getInstance().get( loadID );
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             cachedObjects.put( loadID, load );
         }
         return load;

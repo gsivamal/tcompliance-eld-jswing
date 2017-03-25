@@ -3,6 +3,7 @@ package model;
 import dao.*;
 import model.factory.*;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class Mediator {
@@ -96,21 +97,21 @@ public class Mediator {
         vehicleDatabase.remove( vehicle );
     }
 
-    public void addLoad(Load load) {
+    public void addLoad(Load load) throws SQLException{
         loadDatabase.add( load );
     }
-    public void updateLoad(Load load) {
+    public void updateLoad(Load load) throws SQLException{
         loadDatabase.update( load );
     }
-    public void removeLoad(Load load){
+    public void removeLoad(Load load) throws SQLException{
         loadDatabase.remove( load );
     }
 
-    public DriverList getDriverList(){
+    public DriverList getDriverList() {
         return driverList;
     }
 
-    public VehicleList getVehicleList(){
+    public VehicleList getVehicleList() {
         return vehicleList;
     }
 

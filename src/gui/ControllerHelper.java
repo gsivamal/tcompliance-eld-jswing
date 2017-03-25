@@ -2,10 +2,7 @@ package gui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -81,6 +78,14 @@ public class ControllerHelper {
         alert.showAndWait();
     }
 
+    public static void showInformationWindow(String title, String text) {
+        Alert alert = new Alert( Alert.AlertType.INFORMATION, text );
+        alert.setTitle( title );
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add( ControllerHelper.getUtilCSSFile() );
+        alert.showAndWait();
+    }
+
     private static Parent loadPage(String fileName){
         try {
             FXMLLoader loader = new FXMLLoader( ControllerHelper.class.getResource( fileName ) );
@@ -90,6 +95,13 @@ public class ControllerHelper {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static void alignHeights(Label labelNode, Control controlNode, double initialSize) {
+        labelNode.setPrefHeight( initialSize );
+        controlNode.heightProperty().addListener( (observable, oldValue, newValue) -> {
+            labelNode.setPrefHeight( newValue.doubleValue() );
+        } );
     }
 
 

@@ -1,7 +1,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.Double?>
-<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.LoadFuelTabController" fx:id="loadFuelTab" alignment="CENTER">
+<?import javafx.scene.text.Text?>
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.LoadFuelTabController" fx:id="loadFuelTab" alignment="CENTER" stylesheets="@../../util.css, @../../page.css">
     <BorderPane>
         <center>
             <fx:define>
@@ -12,30 +13,32 @@
                 <HBox spacing="200" alignment="CENTER">
                     <HBox spacing="$SPACING_HORIZONTAL">
                         <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                            <Label text="Load #: "/>
-                            <Label text="Start: "/>
-                            <Label text="End: "/>
-                            <Label text="B/L #: "/>
+                            <Label fx:id="labelLoadNumber" text="Load #: "/>
+                            <Label fx:id="labelStart" text="Start: "/>
+                            <Label fx:id="labelEnd" text="End: "/>
+                            <Label fx:id="labelBLNumber" text="B/L #: "/>
                         </VBox>
                         <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                            <Label fx:id="labelLoadValue" text="123"/>
-                            <Label fx:id="labelStartValue" text="02/18/2017 10:30"/>
-                            <Label fx:id="labelEndValue" text="02/18/2017 12:30"/>
-                            <Label fx:id="labelBLValue"  text="12345"/>
+                            <TextField fx:id="textFieldLoadValue"/>
+                            <TextField fx:id="textFieldStartValue"/>
+                            <TextField fx:id="textFieldEndValue"/>
+                            <TextField fx:id="textFieldBLValue"/>
                         </VBox>
                     </HBox>
                     <HBox spacing="$SPACING_HORIZONTAL">
                         <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                            <Label text="Truck/Tractor: "/>
-                            <Label text="Trailer 1: "/>
-                            <Label text="Trailer 2: "/>
-                            <Label text="Fuel Card #: "/>
+                            <Label fx:id="labelTruckTractor" text="Truck/Tractor: "/>
+                            <Label fx:id="labelTrailer1" text="Trailer 1: "/>
+                            <Label fx:id="labelTrailer2" text="Trailer 2: "/>
+                            <Label fx:id="labelFuelCardNumber" text="Fuel Card #: "/>
+                            <Label fx:id="labelFuelCardIssuedBy" text="Fuel card issued by: "/>
                         </VBox>
                         <VBox spacing="$SPACING_VERTICAL" alignment="CENTER_LEFT">
-                            <Label fx:id="labelTruckTractorValue" text="123"/>
-                            <Label fx:id="labelTrailer1Value" text="Full"/>
-                            <Label fx:id="labelTrailer2Value" text="Full"/>
-                            <Label fx:id="labelFuelCardValue" text="12345"/>
+                            <ComboBox fx:id="comboBoxTruckTractorValue"/>
+                            <ComboBox fx:id="comboBoxTrailer1Value"/>
+                            <ComboBox fx:id="comboBoxTrailer2Value"/>
+                            <TextField fx:id="textFieldFuelCardValue"/>
+                            <TextField fx:id="textFieldFuelCardIssuedByValue"/>
                         </VBox>
                     </HBox>
                 </HBox>

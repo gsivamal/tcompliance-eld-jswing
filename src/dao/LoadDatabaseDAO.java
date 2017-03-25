@@ -1,15 +1,13 @@
 package dao;
 
 import model.*;
+import model.Driver;
 import model.factory.DriverFactory;
 import model.factory.FuelCardFactory;
 import model.factory.LoadFactory;
 import model.factory.VehicleFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,7 @@ public class LoadDatabaseDAO implements LoadDao{
         return instance;
     }
 
-    public void add(Load item) {
+    public void add(Load item) throws SQLException {
         try {
             Connection connection = DbUtil.getConnection();
             PreparedStatement addStatement = connection.prepareStatement( "INSERT INTO load " +
@@ -31,19 +29,32 @@ public class LoadDatabaseDAO implements LoadDao{
             addStatement.setInt( 1, item.getLoadID() );
             addStatement.setString( 2, item.getStartTime().format( Clock.formatter ) );
             addStatement.setString( 3, item.getEndTime().format( Clock.formatter ) );
-            addStatement.setInt( 4, item.getTruck().getID() );
-            addStatement.setInt( 5, item.getTrailer1().getID() );
-            addStatement.setInt( 6, item.getTrailer2().getID() );
+            if ( item.getTruck() != null ) {
+                addStatement.setInt( 4, item.getTruck().getID() );
+            } else {
+                addStatement.setNull( 4, Types.INTEGER );
+            }
+            if ( item.getTrailer1() != null ) {
+                addStatement.setInt( 5, item.getTrailer1().getID() );
+            }else{
+                addStatement.setNull( 5, Types.INTEGER );
+            }
+            if ( item.getTrailer2() != null ) {
+                addStatement.setInt( 6, item.getTrailer2().getID() );
+            }else{
+                addStatement.setInt( 6,  Types.INTEGER);
+            }
             addStatement.setString( 7, item.getBlNumber() );
             addStatement.setInt( 8, item.getFuelCard().getId() );
             addStatement.setInt( 9, item.getDriver().getID() );
             addStatement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
+            throw ex;
         }
     }
 
-    public void update(Load item) {
+    public void update(Load item) throws SQLException {
         try {
             Connection connection = DbUtil.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement(
@@ -69,7 +80,7 @@ public class LoadDatabaseDAO implements LoadDao{
 
     }
 
-    public Load get(int ID) {
+    public Load get(int ID) throws SQLException {
         try {
             Connection connection = DbUtil.getConnection();
             PreparedStatement getStatement = connection.prepareStatement( "SELECT * FROM load WHERE load_id = ?" );
@@ -95,7 +106,7 @@ public class LoadDatabaseDAO implements LoadDao{
         return null;
     }
 
-    public List<Load> getAll() {
+    public List<Load> getAll() throws SQLException {
         List<Load> loadList = new ArrayList<>();
         try {
             Connection connection = DbUtil.getConnection();

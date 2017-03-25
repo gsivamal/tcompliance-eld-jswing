@@ -60,4 +60,11 @@ public class Vehicle {
     public void setVin(String vin) {
         this.vin.set( vin );
     }
+
+    @Override
+    public String toString() {
+        return String.format( "%s %s", getName(), getVin() );
+    }
+
+
 }
