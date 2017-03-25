@@ -214,6 +214,9 @@
     -fx-border-width: 1px;
 }
 
+#loadFuelTab TextField{
+    -fx-border-width: 1px;
+}
 
 #adminPage Label{
     -fx-text-fill: #4f81bd;

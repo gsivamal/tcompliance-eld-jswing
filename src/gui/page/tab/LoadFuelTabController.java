@@ -1,6 +1,7 @@
 package gui.page.tab;
 
 import gui.ControllerHelper;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -23,7 +24,7 @@ public class LoadFuelTabController {
 
     @FXML
     private void initialize(){
-        alignHeights( 32 );
+        alignHeights( 28 );
         VehicleList vehicleList = Mediator.getInstance().getVehicleList();
         comboBoxTruckTractorValue.setItems( vehicleList );
         comboBoxTrailer1Value.setItems( vehicleList );
