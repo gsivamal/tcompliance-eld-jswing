@@ -54,4 +54,9 @@ public class LogbookList extends SimpleListProperty<Logbook> {
                 || ( localDate.isAfter( logbook.getStartTime().toLocalDate() ) && localDate.isBefore( logbook.getEndTime().toLocalDate() ) )
                 || logbook.getEndTime().toLocalDate().isEqual( localDate ) ) );
     }
+
+    public ObservableList<Logbook> recapBeforeDay(LocalDate localDate) {
+        return filtered( logbook -> localDate.isAfter( logbook.getStartTime().toLocalDate() )
+                && !logbook.dutyStatusProperty().get().equals( DutyStatus.OFF ) );
+    }
 }

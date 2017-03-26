@@ -3,6 +3,7 @@ package model;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,6 +11,7 @@ public class Clock {
 
     private static SimpleObjectProperty<LocalDateTime> currentTime = new SimpleObjectProperty<>();
     public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+    public static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern( "MM/dd/yyyy" );
 
     private Clock(){
 
@@ -21,6 +23,10 @@ public class Clock {
 
     public static String localDateTimeToString(LocalDateTime dateTime) {
         return dateTime.format( formatter );
+    }
+
+    public static String localDateToString(LocalDate localDate) {
+        return localDate.format( dateFormatter );
     }
 
     public static String durationToString(Duration duration) {
