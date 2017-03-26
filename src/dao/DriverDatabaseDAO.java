@@ -143,17 +143,8 @@ public class DriverDatabaseDAO implements DriverDao {
         return driverList;
     }
 
-    public int getCount(){
-        try {
-            Connection connection = DbUtil.getConnection();
-            PreparedStatement getCountStatement = connection.prepareStatement( "SELECT COUNT(*) FROM driver" );
-            ResultSet resultSet = getCountStatement.executeQuery();
-            if ( resultSet.next() ) {
-                return resultSet.getInt( 1 );
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
+    @Override
+    public int getLastID() {
+        return DbUtil.getLastID( "driver", "driver_id" );
     }
 }

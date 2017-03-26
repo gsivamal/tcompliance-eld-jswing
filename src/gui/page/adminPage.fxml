@@ -1,32 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.lang.Double?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.AdminPageController" fx:id="adminPage" stylesheets="@../util.css">
-    <top>
 
-    </top>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:id="adminPage" fx:controller="gui.page.AdminPageController" prefHeight="400.0" prefWidth="600.0">
+    <top></top>
     <center>
-        <VBox spacing="20">
-            <TableView fx:id="tableUserList" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn fx:id="tableColumnID" text="ID"/>
-                    <TableColumn fx:id="tableColumnFirstName" text="First Name"/>
-                    <TableColumn fx:id="tableColumnLastName" text="Last name"/>
-                    <TableColumn fx:id="tableColumnLicNumber" text="Lic #"/>
-                    <TableColumn fx:id="tableColumnUsername" text="Username(email)"/>
-                    <TableColumn fx:id="tableColumnStatus" text="Status"/>
-                </columns>
-            </TableView>
-        </VBox>
+        <TabPane stylesheets="@../util.css">
+            <tabs>
+                <Tab text="Drivers" closable="false" onSelectionChanged="#driverTabSelected">
+                    <fx:include fx:id="driverListTab" source="tab/driverListTab.fxml"/>
+                </Tab>
+                <Tab text="Equipment" closable="false" onSelectionChanged="#equipmentTabSelected">
+                    <fx:include fx:id="equipmentListTab" source="tab/equipmentListTab.fxml"/>
+                </Tab>
+            </tabs>
+        </TabPane>
     </center>
-    <bottom>
-        <VBox spacing="10">
-            <Label/>
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button fx:id="buttonNew" onAction="#buttonNewClicked" text="New"/>
-                <Button fx:id="buttonDisable" onAction="#buttonDisableClicked" text="Disable"/>
-                <Button fx:id="buttonDelete" onAction="#buttonDeleteClicked" text="Delete"/>
-            </HBox>
-        </VBox>
-    </bottom>
 </BorderPane>

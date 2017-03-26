@@ -199,4 +199,9 @@ public class LogbookDatabaseDAO implements LogbookDao{
         }
         return logbookList;
     }
+
+    @Override
+    public int getLastID() throws SQLException {
+        return DbUtil.getLastID( "logbook", "logbook_id" );
+    }
 }

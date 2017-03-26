@@ -61,6 +61,5 @@ public class DutyStatusDatabaseDAO implements DutyStatusDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

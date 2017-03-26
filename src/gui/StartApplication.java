@@ -1,6 +1,7 @@
 package gui;
 
 import dao.DbUtil;
+import dao.DriverDatabaseDAO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ public class StartApplication extends Application {
         }
         GPSLocation.updateLatestGPSLocation( "Austin AX", 15.22, 16.34 );
         Mediator mediator = Mediator.getInstance();
-        int driverCount = DbUtil.getCount( "driver" );
+        int driverCount = DriverDatabaseDAO.getInstance().getLastID();
         if ( driverCount == 0 ) {
             Driver john = DriverFactory.getInstance().getDriver( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true );
             mediator.addDriver( john );

@@ -24,15 +24,20 @@ public class Mediator {
     }
 
     private Mediator(){
-        driverList = driverDatabase.getAll();
-        vehicleList = vehicleDatabase.getAll();
-        DriverFactory.getInstance().setCount( DbUtil.getCount( "driver" ) );
-        FuelCardFactory.getInstance().setCount( DbUtil.getCount( "fuel_card" ) );
-        LoadFactory.getInstance().setCount( DbUtil.getCount( "load" ) );
-        LogbookFactory.getInstance().setCount( DbUtil.getCount( "logbook" ) );
-        VehicleFactory.getInstance().setCount( DbUtil.getCount( "equipment" ) );
-        LogbookStatus.insertValuesDatabase();
-        DutyStatus.insertValuesDatabase();
+        try {
+            driverList = driverDatabase.getAll();
+            vehicleList = vehicleDatabase.getAll();
+            DriverFactory.getInstance().setCount( driverDatabase.getLastID() );
+            FuelCardFactory.getInstance().setCount( fuelCardDatabase.getLastID() );
+            LoadFactory.getInstance().setCount( loadDatabase.getLastID() );
+            LogbookFactory.getInstance().setCount( logbookDatabase.getLastID() );
+            VehicleFactory.getInstance().setCount( vehicleDatabase.getLastID() );
+            System.out.println(vehicleDatabase.getLastID());
+            LogbookStatus.insertValuesDatabase();
+            DutyStatus.insertValuesDatabase();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
 

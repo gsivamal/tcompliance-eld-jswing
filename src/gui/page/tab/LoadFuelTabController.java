@@ -1,7 +1,6 @@
 package gui.page.tab;
 
 import gui.ControllerHelper;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -47,7 +46,9 @@ public class LoadFuelTabController {
     private void saveButtonClicked(ActionEvent actionEvent) {
         if ( ControllerHelper.showConfirmationWindow( "Load", "Are you sure you want to save load information?" ) ) {
             try {
-                Mediator.getInstance().addLoad( getLoad() );
+                Load load = getLoad();
+                Mediator.getInstance().addFuelCard( load.getFuelCard() );
+                Mediator.getInstance().addLoad( load );
                 ControllerHelper.showInformationWindow( "Load", "Load information saved!" );
             } catch (Exception e) {
                 e.printStackTrace();

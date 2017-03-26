@@ -19,24 +19,23 @@ public class DbUtil {
         return connection;
     }
 
-    public static void main(String[] args) {
-        try {
-            initializeTables( DbUtil.getConnection() );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public static int getCount(String table){
+    public static int getLastID(String table, String IDColumnName){
         try {
             Connection connection = DbUtil.getConnection();
-            PreparedStatement getCountStatement = connection.prepareStatement( "SELECT COUNT(*) FROM " + table );
-            ResultSet resultSet = getCountStatement.executeQuery();
+            String sql = String.format(
+                    "SELECT %s " +
+                            "FROM %s " +
+                            "ORDER BY %s " +
+                            "DESC LIMIT 1;"
+                    , IDColumnName, table, IDColumnName );
+            PreparedStatement getLastID = connection.prepareStatement( sql );
+            ResultSet resultSet = getLastID.executeQuery();
             if ( resultSet.next() ) {
-                return resultSet.getInt( 1 );
+                return resultSet.getInt( IDColumnName );
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return 0;
     }

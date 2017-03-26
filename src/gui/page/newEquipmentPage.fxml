@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.NewEquipmentPageController" fx:id="newEquipmentPage" stylesheets="@../util.css, @../page.css">
+    <top>
+        <StackPane fx:id="titleWrapper" alignment="CENTER_LEFT">
+            <Label fx:id="labelTitle" text="New Equipment"/>
+        </StackPane>
+    </top>
+    <center>
+        <fx:define>
+            <Double fx:id="VERTICAL_SPACING" fx:value="20"/>
+            <Double fx:id="HORIZONTAL_SPACING" fx:value="10"/>
+            <Double fx:id="DEFAULT_LABEL_HEIGHT" fx:value="28"/>
+            <Double fx:id="GROUP_HORIZONTAL_SPACING" fx:value="150"/>
+        </fx:define>
+        <VBox spacing="20" fx:id="content">
+            <Label/>
+            <HBox spacing="$HORIZONTAL_SPACING">
+                <VBox spacing="$VERTICAL_SPACING">
+                    <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelID" text="ID"/>
+                    <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelName" text="Name"/>
+                    <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelMake" text="Make"/>
+                    <Label prefHeight="$DEFAULT_LABEL_HEIGHT" fx:id="labelVIN" text="VIN"/>
+                </VBox>
+                <VBox spacing="$VERTICAL_SPACING">
+                    <TextField fx:id="textFieldID" disable="true" text="Auto-Generated"/>
+                    <TextField fx:id="textFieldName"/>
+                    <TextField fx:id="textFieldMake"/>
+                    <TextField fx:id="textFieldVIN"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <VBox fx:id="bottomButtonWrapper">
+            <Label/>
+            <HBox alignment="CENTER_RIGHT" spacing="20">
+                <Button fx:id="buttonCancelNew" onAction="#buttonCancelNewClicked" text="Cancel"/>
+                <Button fx:id="buttonSaveNew" onAction="#buttonSaveNewClicked" text="Save!"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

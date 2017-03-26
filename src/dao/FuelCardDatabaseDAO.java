@@ -92,4 +92,9 @@ public class FuelCardDatabaseDAO implements FuelCardDao{
     public ArrayList<FuelCard> getAll() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public int getLastID() {
+        return DbUtil.getLastID( "fuel_card", "fuel_card_id" );
+    }
 }

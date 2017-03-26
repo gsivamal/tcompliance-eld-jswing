@@ -1,0 +1,33 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.Double?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.DriverListTabController" fx:id="driverListTab"
+            stylesheets="@../../util.css">
+    <top>
+
+    </top>
+    <center>
+        <VBox spacing="20">
+            <TableView fx:id="tableUserList" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="tableColumnID" text="ID"/>
+                    <TableColumn fx:id="tableColumnFirstName" text="First Name"/>
+                    <TableColumn fx:id="tableColumnLastName" text="Last name"/>
+                    <TableColumn fx:id="tableColumnLicNumber" text="Lic #"/>
+                    <TableColumn fx:id="tableColumnUsername" text="Username(email)"/>
+                    <TableColumn fx:id="tableColumnStatus" text="Status"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+    <bottom>
+        <VBox spacing="10">
+            <Label/>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button fx:id="buttonNew" onAction="#buttonNewClicked" text="New"/>
+                <Button fx:id="buttonDisable" onAction="#buttonDisableClicked" text="Disable"/>
+                <Button fx:id="buttonDelete" onAction="#buttonDeleteClicked" text="Delete"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

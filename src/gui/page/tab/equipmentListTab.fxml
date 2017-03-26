@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.page.tab.EquipmentListTabController" fx:id="equipmentListTab"
+            stylesheets="@../../util.css">
+    <top>
+    </top>
+    <center>
+        <VBox spacing="20">
+            <TableView fx:id="tableEquipmentList" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="tableColumnID" text="ID"/>
+                    <TableColumn fx:id="tableColumnName" text="Name"/>
+                    <TableColumn fx:id="tableColumnMake" text="Make"/>
+                    <TableColumn fx:id="tableColumnVIN" text="VIN"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+    <bottom>
+        <VBox spacing="10">
+            <Label/>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button fx:id="buttonNew" onAction="#buttonNewClicked" text="New"/>
+                <Button fx:id="buttonDelete" onAction="#buttonDeleteClicked" text="Delete"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

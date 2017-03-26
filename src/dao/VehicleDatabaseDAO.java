@@ -64,6 +64,7 @@ public class VehicleDatabaseDAO implements VehicleDao{
                     "DELETE FROM equipment " +
                             "WHERE equipment_id = ?;"
             );
+            deleteStatement.setInt( 1, item.getID() );
             deleteStatement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -115,5 +116,10 @@ public class VehicleDatabaseDAO implements VehicleDao{
             ex.printStackTrace();
         }
         return vehicleList;
+    }
+
+    @Override
+    public int getLastID(){
+        return DbUtil.getLastID( "equipment", "equipment_id" );
     }
 }

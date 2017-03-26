@@ -54,6 +54,10 @@ public class ControllerHelper {
         return loadPage( "page/newUserPage.fxml" );
     }
 
+    public static Parent getAddEquipmentPage(){
+        return loadPage( "page/newEquipmentPage.fxml" );
+    }
+
     public static void clearAllPages(){
         loginPage = null;
         startPage = null;
@@ -65,7 +69,7 @@ public class ControllerHelper {
         Alert alert = new Alert( Alert.AlertType.CONFIRMATION, text );
         alert.setTitle( title );
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add( ControllerHelper.class.getResource("util.css").toExternalForm());
+        dialogPane.getStylesheets().add( ControllerHelper.getUtilCSSFile() );
         alert.showAndWait();
         return alert.getResult() == ButtonType.OK;
     }
@@ -74,7 +78,7 @@ public class ControllerHelper {
         Alert alert = new Alert( Alert.AlertType.ERROR, text );
         alert.setTitle( title );
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add( ControllerHelper.class.getResource("util.css").toExternalForm());
+        dialogPane.getStylesheets().add( ControllerHelper.getUtilCSSFile() );
         alert.showAndWait();
     }
 

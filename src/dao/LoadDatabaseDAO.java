@@ -131,4 +131,9 @@ public class LoadDatabaseDAO implements LoadDao{
         }
         return loadList;
     }
+
+    @Override
+    public int getLastID() throws SQLException {
+        return DbUtil.getLastID( "load", "load_id" );
+    }
 }
