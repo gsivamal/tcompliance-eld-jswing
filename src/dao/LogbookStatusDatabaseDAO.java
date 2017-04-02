@@ -1,6 +1,6 @@
 package dao;
 
-import model.LogbookStatus;
+import domain.model.LogbookStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

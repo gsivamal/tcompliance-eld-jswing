@@ -1,6 +1,6 @@
 package dao;
 
-import model.FuelCard;
+import domain.model.FuelCard;
 
 import java.util.ArrayList;
 

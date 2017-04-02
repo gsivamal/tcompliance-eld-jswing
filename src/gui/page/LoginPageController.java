@@ -10,8 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import model.Driver;
-import model.Mediator;
+import domain.model.Driver;
+import domain.model.Mediator;
 
 public class LoginPageController {
 

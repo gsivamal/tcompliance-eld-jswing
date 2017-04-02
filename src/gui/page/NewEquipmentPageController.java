@@ -7,9 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Mediator;
-import model.Vehicle;
-import model.factory.VehicleFactory;
+import domain.model.Mediator;
+import domain.model.Vehicle;
+import domain.model.factory.VehicleFactory;
 
 public class NewEquipmentPageController {
 

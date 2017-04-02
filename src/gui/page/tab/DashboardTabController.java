@@ -7,10 +7,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import model.Clock;
-import model.Driver;
-import model.Logbook;
-import model.Mediator;
+import domain.model.Clock;
+import domain.model.Driver;
+import domain.model.Logbook;
+import domain.model.Mediator;
 
 import java.time.Duration;
 

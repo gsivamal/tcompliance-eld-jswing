@@ -1,6 +1,6 @@
 package dao;
 
-import model.LogbookStatus;
+import domain.model.LogbookStatus;
 
 public interface LogbookStatusDao {
     void add(LogbookStatus status);

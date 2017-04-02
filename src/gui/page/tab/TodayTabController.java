@@ -1,15 +1,19 @@
 package gui.page.tab;
 
+import domain.mediator.PDFGeneration;
 import gui.PageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import model.*;
+import domain.model.*;
+import javafx.scene.control.Button;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TodayTabController {
 
@@ -87,6 +91,12 @@ public class TodayTabController {
 
     @FXML
     private void buttonPrintClicked(ActionEvent actionEvent) {
+        List<Logbook> logbookList = tableToday.getItems();
+        try {
+            PDFGeneration.printTodayPDF( logbookList );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

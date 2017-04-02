@@ -9,8 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.StageStyle;
-import model.Mediator;
-import model.Vehicle;
+import domain.model.Mediator;
+import domain.model.Vehicle;
 
 public class EquipmentListTabController {
 

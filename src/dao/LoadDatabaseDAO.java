@@ -1,11 +1,11 @@
 package dao;
 
-import model.*;
-import model.Driver;
-import model.factory.DriverFactory;
-import model.factory.FuelCardFactory;
-import model.factory.LoadFactory;
-import model.factory.VehicleFactory;
+import domain.model.*;
+import domain.model.Driver;
+import domain.model.factory.DriverFactory;
+import domain.model.factory.FuelCardFactory;
+import domain.model.factory.LoadFactory;
+import domain.model.factory.VehicleFactory;
 
 import java.sql.*;
 import java.time.LocalDateTime;

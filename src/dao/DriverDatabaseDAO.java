@@ -1,9 +1,9 @@
 package dao;
 
-import model.Driver;
-import model.DriverList;
-import model.LogbookList;
-import model.factory.DriverFactory;
+import domain.model.Driver;
+import domain.model.DriverList;
+import domain.model.LogbookList;
+import domain.model.factory.DriverFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

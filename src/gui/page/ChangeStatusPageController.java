@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import model.DutyStatus;
-import model.LogbookStatus;
-import model.Mediator;
+import domain.model.DutyStatus;
+import domain.model.LogbookStatus;
+import domain.model.Mediator;
 
 public class ChangeStatusPageController {
 

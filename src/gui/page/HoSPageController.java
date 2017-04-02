@@ -10,10 +10,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.StageStyle;
-import model.Clock;
-import model.Driver;
-import model.Logbook;
-import model.LogbookList;
+import domain.model.Clock;
+import domain.model.Driver;
+import domain.model.Logbook;
+import domain.model.LogbookList;
 
 public class HoSPageController {
 

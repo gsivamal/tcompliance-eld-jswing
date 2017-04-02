@@ -7,8 +7,8 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import model.Driver;
-import model.LogbookList;
+import domain.model.Driver;
+import domain.model.LogbookList;
 
 import java.time.LocalDate;
 

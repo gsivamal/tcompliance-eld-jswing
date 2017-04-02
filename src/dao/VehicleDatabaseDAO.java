@@ -1,8 +1,8 @@
 package dao;
 
-import model.Vehicle;
-import model.VehicleList;
-import model.factory.VehicleFactory;
+import domain.model.Vehicle;
+import domain.model.VehicleList;
+import domain.model.factory.VehicleFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -30,7 +30,7 @@
         </center>
         <bottom>
             <StackPane alignment="CENTER_RIGHT" styleClass="tabButtonWrapper">
-                <Button fx:id="buttonDetails" onAction="#buttonDetailsClicked" text="Details" styleClass="tabButton"/>
+                <Button fx:id="buttonPrint" onAction="#buttonPrintClicked" text="Print" styleClass="tabButton"/>
             </StackPane>
         </bottom>
     </BorderPane>

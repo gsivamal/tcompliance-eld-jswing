@@ -1,6 +1,6 @@
 package dao;
 
-import model.DutyStatus;
+import domain.model.DutyStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

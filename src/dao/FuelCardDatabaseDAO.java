@@ -1,7 +1,7 @@
 package dao;
 
-import model.FuelCard;
-import model.factory.FuelCardFactory;
+import domain.model.FuelCard;
+import domain.model.factory.FuelCardFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

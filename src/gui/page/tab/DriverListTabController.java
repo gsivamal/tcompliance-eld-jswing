@@ -7,8 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
-import model.Driver;
-import model.Mediator;
+import domain.model.Driver;
+import domain.model.Mediator;
 
 
 public class DriverListTabController {

@@ -9,9 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.*;
-import model.factory.DriverFactory;
-import model.factory.VehicleFactory;
+import domain.model.*;
+import domain.model.factory.DriverFactory;
+import domain.model.factory.VehicleFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;

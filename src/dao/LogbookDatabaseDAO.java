@@ -1,8 +1,8 @@
 package dao;
 
-import model.*;
-import model.factory.DriverFactory;
-import model.factory.LogbookFactory;
+import domain.model.*;
+import domain.model.factory.DriverFactory;
+import domain.model.factory.LogbookFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

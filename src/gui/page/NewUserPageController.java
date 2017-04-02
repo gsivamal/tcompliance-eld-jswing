@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Driver;
-import model.Mediator;
-import model.factory.DriverFactory;
+import domain.model.Driver;
+import domain.model.Mediator;
+import domain.model.factory.DriverFactory;
 
 public class NewUserPageController {
 

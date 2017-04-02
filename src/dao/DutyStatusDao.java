@@ -1,6 +1,6 @@
 package dao;
 
-import model.DutyStatus;
+import domain.model.DutyStatus;
 
 public interface DutyStatusDao {
     void add(DutyStatus status);
