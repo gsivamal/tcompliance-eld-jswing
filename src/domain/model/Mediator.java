@@ -103,6 +103,9 @@ public class Mediator {
         vehicleDatabase.remove( vehicle );
     }
 
+    public Load getLatestOpenLoad() throws SQLException{
+        return loadDatabase.getLatestOpenLoad();
+    }
     public void addLoad(Load load) throws SQLException{
         loadDatabase.add( load );
     }

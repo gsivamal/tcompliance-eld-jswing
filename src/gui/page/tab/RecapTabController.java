@@ -1,15 +1,16 @@
 package gui.page.tab;
 
 import domain.mediator.PDFGeneration;
+import domain.model.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import domain.model.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
@@ -71,8 +72,9 @@ public class RecapTabController {
     private void buttonPrintClicked(ActionEvent actionEvent) {
         List<Recap> recapList = tableRecap.getItems();
         try {
-            PDFGeneration.printRecapPDF( recapList );
-        } catch (IOException e) {
+            Mediator mediator = Mediator.getInstance();
+            PDFGeneration.printRecapPDF( recapList, mediator.getLoggedDriver(), mediator.getLatestOpenLoad(), GPSLocation.getLatestGPSLocation() );
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
     }

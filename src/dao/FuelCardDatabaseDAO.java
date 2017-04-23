@@ -70,6 +70,7 @@ public class FuelCardDatabaseDAO implements FuelCardDao{
                             "fuel_card_number, fuel_card_issued_by " +
                             "FROM fuel_card " +
                             "WHERE fuel_card_id = ?;");
+            getStatement.setInt( 1, id );
             ResultSet resultSet = getStatement.executeQuery();
             if ( resultSet.next() ) {
                 int fuelCardNumber = resultSet.getInt( "fuel_card_number" );

@@ -130,4 +130,31 @@ public class LoadDatabaseDAO implements LoadDao{
     public int getLastID() throws SQLException {
         return SQLiteDatabase.getLastID( "load", "load_id" );
     }
+
+    @Override
+    public Load getLatestOpenLoad() throws SQLException {
+        Connection connection = SQLiteDatabase.getConnection();
+        PreparedStatement getStatement = connection.prepareStatement( "SELECT * FROM load " +
+                "" +
+                "ORDER BY load_id DESC " +
+                "LIMIT 1" );
+        ResultSet resultSet = getStatement.executeQuery();
+        if ( resultSet.next() ) {
+            VehicleFactory vehicleFactory = VehicleFactory.getInstance();
+            int loadID = resultSet.getInt( "load_id" );
+            LocalDateTime startTime = LocalDateTime.parse( resultSet.getString("start_time"), Clock.formatter );
+            LocalDateTime endTime = LocalDateTime.parse( resultSet.getString( "end_time" ), Clock.formatter );
+            Vehicle truck = vehicleFactory.getVehicle( resultSet.getInt( "truck_id" ) );
+            Vehicle trailer1 = vehicleFactory.getVehicle( resultSet.getInt( "trailer1_id" ) );
+            Vehicle trailer2 = vehicleFactory.getVehicle( resultSet.getInt( "trailer2_id" ) );
+            String blNumber = resultSet.getString( "bl_number" );
+            FuelCard fuelCard = FuelCardFactory.getInstance().getFuelCard( resultSet.getInt( "fuel_card_id" ) );
+            Driver driver = DriverFactory.getInstance().getDriver( resultSet.getInt( "driver_id" ) );
+            Load load = LoadFactory.getInstance().getLoad( loadID, startTime, endTime, truck, trailer1, trailer2, blNumber, fuelCard, driver );
+            return load;
+        }
+        return null;
+    }
+
+
 }

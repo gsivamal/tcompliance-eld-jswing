@@ -82,7 +82,7 @@ public class RecapList extends SimpleListProperty<Recap>{
         int[] colWidths = {160, 100, 100, 80, 100};
         String [] headers = RecapList.getHeaders();
         String[][] content = RecapList.getContent( recapList );
-        Table table = PDFGeneration.drawTable( colWidths, headers, content, Cell.HorizontalAlignment.CENTER );
+        Table table = PDFGeneration.printTable( colWidths, headers, content, Cell.HorizontalAlignment.CENTER );
         return table;
     }
 }

@@ -1,15 +1,15 @@
 package gui.page.tab;
 
 import domain.mediator.PDFGeneration;
+import domain.model.*;
 import gui.PageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import domain.model.*;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -93,12 +93,11 @@ public class TodayTabController {
     private void buttonPrintClicked(ActionEvent actionEvent) {
         List<Logbook> logbookList = tableToday.getItems();
         try {
-            PDFGeneration.printTodayPDF( logbookList );
-        } catch (IOException e) {
+            PDFGeneration.printTodayPDF( logbookList, Mediator.getInstance().getLoggedDriver(), Mediator.getInstance().getLatestOpenLoad(), GPSLocation.getLatestGPSLocation() );
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     private void selectedDayValueChanged(){
         LocalDate selectedDay = datePickerSelectedDay.getValue();

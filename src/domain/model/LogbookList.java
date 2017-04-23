@@ -92,7 +92,7 @@ public class LogbookList extends SimpleListProperty<Logbook> {
         int[] colWidths = {50, 120, 100, 80, 180};
         String [] headers = LogbookList.getHeaders();
         String[][] content = LogbookList.getContent( logbookList );
-        Table table = PDFGeneration.drawTable( colWidths, headers, content, Cell.HorizontalAlignment.CENTER );
+        Table table = PDFGeneration.printTable( colWidths, headers, content, Cell.HorizontalAlignment.CENTER );
         return table;
     }
 }
