@@ -1,6 +1,6 @@
 package domain.model.factory;
 
-import dao.VehicleDatabaseDAO;
+import domain.mediator.Instances;
 import domain.model.Vehicle;
 
 public class VehicleFactory extends Factory<Vehicle> {
@@ -31,7 +31,7 @@ public class VehicleFactory extends Factory<Vehicle> {
     public Vehicle getVehicle(int ID) {
         Vehicle vehicle = cachedObjects.get( ID );
         if ( vehicle == null ) {
-            vehicle = VehicleDatabaseDAO.getInstance().get( ID );
+            vehicle = Instances.getVehicleSQLiteDb().get( ID );
             cachedObjects.put( ID, vehicle );
         }
         return vehicle;

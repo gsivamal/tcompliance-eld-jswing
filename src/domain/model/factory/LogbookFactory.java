@@ -1,6 +1,6 @@
 package domain.model.factory;
 
-import dao.LogbookDatabaseDAO;
+import domain.mediator.Instances;
 import domain.model.*;
 
 import java.time.LocalDateTime;
@@ -38,7 +38,7 @@ public class LogbookFactory extends Factory<Logbook> {
     public Logbook getLogbook(int ID) {
         Logbook logbook = cachedObjects.get( ID );
         if ( logbook == null ) {
-            logbook = LogbookDatabaseDAO.getInstance().get( ID );
+            logbook = Instances.getLogbookSQLiteDB().get( ID );
             cachedObjects.put( ID, logbook );
         }
         return logbook;

@@ -1,8 +1,10 @@
 package domain.model.factory;
 
-import dao.DriverDatabaseDAO;
-import dao.LogbookDatabaseDAO;
-import domain.model.*;
+import domain.mediator.Instances;
+import domain.model.Driver;
+import domain.model.DutyStatus;
+import domain.model.Logbook;
+import domain.model.LogbookList;
 
 public class DriverFactory extends Factory<Driver> {
 
@@ -23,7 +25,7 @@ public class DriverFactory extends Factory<Driver> {
             logbookList.add( logbook );
             Driver driver = getDriver( getCount(), username, password, confirmPassword, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, isAdmin, logbookList );
             logbook.setDriver( driver );
-            LogbookDatabaseDAO.getInstance().add( logbook );
+            Instances.getLogbookSQLiteDB().add( logbook );
             return driver;
         } catch (Exception e) {
             decrementCount();
@@ -43,7 +45,7 @@ public class DriverFactory extends Factory<Driver> {
     public Driver getDriver(int driverID) {
         Driver driver = cachedObjects.get( driverID );
         if ( driver == null ) {
-            driver = DriverDatabaseDAO.getInstance().get( driverID );
+            driver = Instances.getDriverSQLiteDB().get( driverID );
             cachedObjects.put( driverID, driver );
         }
         return driver;

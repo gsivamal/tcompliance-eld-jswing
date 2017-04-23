@@ -1,6 +1,6 @@
 package domain.model;
 
-import dao.DbUtil;
+import dao.SQLiteDatabase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,7 +39,7 @@ public enum LogbookStatus {
 
     public static void insertValuesDatabase(){
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement insertStatement = connection.prepareStatement(
                     "INSERT OR IGNORE INTO logbook_status " +
                             "(logbook_status_id, logbook_status_value) " +

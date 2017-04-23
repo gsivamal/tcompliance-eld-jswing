@@ -14,15 +14,9 @@ import java.util.List;
 
 public class LoadDatabaseDAO implements LoadDao{
 
-    private static final LoadDatabaseDAO instance = new LoadDatabaseDAO();
-    private LoadDatabaseDAO(){}
-    public static LoadDatabaseDAO getInstance() {
-        return instance;
-    }
-
     public void add(Load item) throws SQLException {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement addStatement = connection.prepareStatement( "INSERT INTO load " +
                     "(load_id, start_time, end_time, truck_id, trailer1_id, trailer2_id, bl_number, fuel_card_id, driver_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)" );
@@ -56,7 +50,7 @@ public class LoadDatabaseDAO implements LoadDao{
 
     public void update(Load item) throws SQLException {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement(
                     "UPDATE load SET " +
                             "start_time = ?, end_time = ?, truck_id = ?, trailer1_id = ?, trailer2_id = ?, bl_number = ?, fuel_card_id = ?, driver_id = ? " +
@@ -82,7 +76,7 @@ public class LoadDatabaseDAO implements LoadDao{
 
     public Load get(int ID) throws SQLException {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement( "SELECT * FROM load WHERE load_id = ?" );
             getStatement.setInt( 1, ID );
             ResultSet resultSet = getStatement.executeQuery();
@@ -109,7 +103,7 @@ public class LoadDatabaseDAO implements LoadDao{
     public List<Load> getAll() throws SQLException {
         List<Load> loadList = new ArrayList<>();
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement( "SELECT * FROM load" );
             ResultSet resultSet = getStatement.executeQuery();
             while ( resultSet.next() ) {
@@ -134,6 +128,6 @@ public class LoadDatabaseDAO implements LoadDao{
 
     @Override
     public int getLastID() throws SQLException {
-        return DbUtil.getLastID( "load", "load_id" );
+        return SQLiteDatabase.getLastID( "load", "load_id" );
     }
 }

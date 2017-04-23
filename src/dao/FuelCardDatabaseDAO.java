@@ -11,16 +11,10 @@ import java.util.ArrayList;
 
 public class FuelCardDatabaseDAO implements FuelCardDao{
 
-    private static final FuelCardDatabaseDAO instance = new FuelCardDatabaseDAO();
-    private FuelCardDatabaseDAO(){}
-    public static FuelCardDatabaseDAO getInstance(){
-        return instance;
-    }
-
     @Override
     public void add(FuelCard item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement addStatement = connection.prepareStatement(
                     "INSERT INTO fuel_card (fuel_card_number, fuel_card_issued_by, fuel_card_id) " +
                             "VALUES (?, ?, ?)"
@@ -38,7 +32,7 @@ public class FuelCardDatabaseDAO implements FuelCardDao{
     @Override
     public void update(FuelCard item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement(
                     "UPDATE fuel_card SET " +
                             "fuel_card_number = ?, fuel_card_issued_by = ?" +
@@ -56,7 +50,7 @@ public class FuelCardDatabaseDAO implements FuelCardDao{
     @Override
     public void remove(FuelCard item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement removeStatement = connection.prepareStatement(
                     "DELETE FROM fuel_card WHERE fuel_card_id = ?"
             );
@@ -70,7 +64,7 @@ public class FuelCardDatabaseDAO implements FuelCardDao{
     @Override
     public FuelCard get(int id) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement(
                     "SELECT " +
                             "fuel_card_number, fuel_card_issued_by " +
@@ -95,6 +89,6 @@ public class FuelCardDatabaseDAO implements FuelCardDao{
 
     @Override
     public int getLastID() {
-        return DbUtil.getLastID( "fuel_card", "fuel_card_id" );
+        return SQLiteDatabase.getLastID( "fuel_card", "fuel_card_id" );
     }
 }

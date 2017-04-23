@@ -1,6 +1,6 @@
 package domain.model.factory;
 
-import dao.LoadDatabaseDAO;
+import domain.mediator.Instances;
 import domain.model.Driver;
 import domain.model.FuelCard;
 import domain.model.Load;
@@ -39,7 +39,7 @@ public class LoadFactory extends Factory<Load> {
         Load load = cachedObjects.get( loadID );
         if ( load == null ) {
             try {
-                load = LoadDatabaseDAO.getInstance().get( loadID );
+                load = Instances.getLoadDatabaseSQLiteDB().get( loadID );
             } catch (SQLException e) {
                 e.printStackTrace();
             }

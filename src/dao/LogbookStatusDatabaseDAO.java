@@ -8,17 +8,10 @@ import java.sql.SQLException;
 
 public class LogbookStatusDatabaseDAO implements LogbookStatusDao {
 
-    private static final LogbookStatusDatabaseDAO instance = new LogbookStatusDatabaseDAO();
-    private LogbookStatusDatabaseDAO(){}
-
-    public static LogbookStatusDatabaseDAO getInstance(){
-        return instance;
-    }
-
     @Override
     public void add(LogbookStatus status) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement addStatement = connection.prepareStatement(
                     "INSERT INTO logbook_status " +
                             "(logbook_status_id, logbook_status_value) " +
@@ -36,7 +29,7 @@ public class LogbookStatusDatabaseDAO implements LogbookStatusDao {
     @Override
     public void remove(LogbookStatus status) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement removeStatement = connection.prepareStatement(
                     "DELETE FROM logbook_status " +
                             "WHERE logbook_status_id = ?;"
@@ -52,7 +45,7 @@ public class LogbookStatusDatabaseDAO implements LogbookStatusDao {
     @Override
     public void removeAll() {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement removeAllStatement = connection.prepareStatement(
                     "DELETE FROM logbook_status;"
             );

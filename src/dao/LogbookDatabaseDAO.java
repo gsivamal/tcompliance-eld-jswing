@@ -12,17 +12,10 @@ import java.time.LocalDateTime;
 
 public class LogbookDatabaseDAO implements LogbookDao{
 
-    private static final LogbookDatabaseDAO instance = new LogbookDatabaseDAO();
-    private LogbookDatabaseDAO(){}
-
-    public static LogbookDatabaseDAO getInstance(){
-        return instance;
-    }
-
     @Override
     public void add(Logbook item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement addStatement = connection.prepareStatement(
                     "INSERT INTO logbook " +
                             "(status_id, start_time, end_time, driver_id, " +
@@ -53,7 +46,7 @@ public class LogbookDatabaseDAO implements LogbookDao{
     @Override
     public void update(Logbook item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement(
                     "UPDATE logbook " +
                             "SET status_id = ?, start_time = ?, end_time = ?, driver_id = ?, location = ?, latitude = ?, longitude = ?, " +
@@ -83,7 +76,7 @@ public class LogbookDatabaseDAO implements LogbookDao{
     @Override
     public void remove(Logbook item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement removeStatement = connection.prepareStatement(
                     "DELETE FROM logbook " +
                             "WHERE logbook_id = ?"
@@ -100,7 +93,7 @@ public class LogbookDatabaseDAO implements LogbookDao{
     @Override
     public Logbook get(int id) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement(
                     "SELECT * FROM logbook WHERE logbook_id = ?"
             );
@@ -135,7 +128,7 @@ public class LogbookDatabaseDAO implements LogbookDao{
     public LogbookList getAll() {
         LogbookList logbookList = new LogbookList();
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement(
                     "SELECT * FROM logbook;"
             );
@@ -169,7 +162,7 @@ public class LogbookDatabaseDAO implements LogbookDao{
     public LogbookList getAllByDriverID(int driverID) {
         LogbookList logbookList = new LogbookList();
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement(
                     "SELECT * FROM logbook WHERE driver_id = ?;"
             );
@@ -202,6 +195,6 @@ public class LogbookDatabaseDAO implements LogbookDao{
 
     @Override
     public int getLastID() throws SQLException {
-        return DbUtil.getLastID( "logbook", "logbook_id" );
+        return SQLiteDatabase.getLastID( "logbook", "logbook_id" );
     }
 }

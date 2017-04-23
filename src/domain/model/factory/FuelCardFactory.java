@@ -1,6 +1,6 @@
 package domain.model.factory;
 
-import dao.FuelCardDatabaseDAO;
+import domain.mediator.Instances;
 import domain.model.FuelCard;
 
 public class FuelCardFactory extends Factory<FuelCard>{
@@ -31,7 +31,7 @@ public class FuelCardFactory extends Factory<FuelCard>{
     public FuelCard getFuelCard(int fuelCardID){
         FuelCard fuelCard = cachedObjects.get( fuelCardID );
         if ( fuelCard == null ) {
-            fuelCard = FuelCardDatabaseDAO.getInstance().get( fuelCardID );
+            fuelCard = Instances.getFuelCardSQLiteDB().get( fuelCardID );
             cachedObjects.put( fuelCardID, fuelCard );
         }
         return fuelCard;

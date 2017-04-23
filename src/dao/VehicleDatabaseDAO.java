@@ -11,17 +11,10 @@ import java.sql.SQLException;
 
 public class VehicleDatabaseDAO implements VehicleDao{
 
-    private static final VehicleDatabaseDAO instance = new VehicleDatabaseDAO();
-    private VehicleDatabaseDAO(){}
-
-    public static VehicleDatabaseDAO getInstance(){
-        return instance;
-    }
-
     @Override
     public void add(Vehicle item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement addStatement = connection.prepareStatement(
                     "INSERT INTO equipment " +
                             "(equipment_name, equipment_make, equipment_vin, equipment_id) " +
@@ -40,7 +33,7 @@ public class VehicleDatabaseDAO implements VehicleDao{
     @Override
     public void update(Vehicle item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement(
                     "UPDATE equipment SET " +
                             "equipment_name = ?, equipment_make = ?, equipment_vin = ? " +
@@ -59,7 +52,7 @@ public class VehicleDatabaseDAO implements VehicleDao{
     @Override
     public void remove(Vehicle item) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement deleteStatement = connection.prepareStatement(
                     "DELETE FROM equipment " +
                             "WHERE equipment_id = ?;"
@@ -74,7 +67,7 @@ public class VehicleDatabaseDAO implements VehicleDao{
     @Override
     public Vehicle get(int id) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement(
                     "SELECT equipment_name, equipment_make, equipment_vin " +
                             "FROM equipment " +
@@ -98,7 +91,7 @@ public class VehicleDatabaseDAO implements VehicleDao{
     public VehicleList getAll() {
         VehicleList vehicleList = new VehicleList();
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getAllStatement = connection.prepareStatement(
                     "SELECT equipment_id, equipment_name, equipment_make, equipment_vin " +
                             "FROM equipment;"
@@ -120,6 +113,6 @@ public class VehicleDatabaseDAO implements VehicleDao{
 
     @Override
     public int getLastID(){
-        return DbUtil.getLastID( "equipment", "equipment_id" );
+        return SQLiteDatabase.getLastID( "equipment", "equipment_id" );
     }
 }

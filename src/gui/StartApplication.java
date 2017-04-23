@@ -1,7 +1,11 @@
 package gui;
 
-import dao.DbUtil;
-import dao.DriverDatabaseDAO;
+import dao.DaoException;
+import dao.SQLiteDatabase;
+import domain.mediator.Instances;
+import domain.model.*;
+import domain.model.factory.DriverFactory;
+import domain.model.factory.VehicleFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import domain.model.*;
-import domain.model.factory.DriverFactory;
-import domain.model.factory.VehicleFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -20,13 +21,13 @@ public class StartApplication extends Application {
 
     public static void main(String[] args) {
         try {
-            DbUtil.initializeTables( DbUtil.getConnection() );
-        } catch (SQLException e) {
+            SQLiteDatabase.initializeTables( SQLiteDatabase.getConnection() );
+        } catch (DaoException | SQLException e) {
             e.printStackTrace();
         }
         GPSLocation.updateLatestGPSLocation( "Austin AX", 15.22, 16.34 );
         Mediator mediator = Mediator.getInstance();
-        int driverCount = DriverDatabaseDAO.getInstance().getLastID();
+        int driverCount = Instances.getDriverSQLiteDB().getLastID();
         if ( driverCount == 0 ) {
             Driver john = DriverFactory.getInstance().getDriver( "John", "test", "test", "John", "", "Peter", "12345", "Active", "LA", "US", true );
             mediator.addDriver( john );

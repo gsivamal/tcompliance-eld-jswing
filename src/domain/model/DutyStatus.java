@@ -1,6 +1,6 @@
 package domain.model;
 
-import dao.DbUtil;
+import dao.SQLiteDatabase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,7 +40,7 @@ public enum DutyStatus {
 
     public static void insertValuesDatabase(){
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement insertStatement = connection.prepareStatement(
                     "INSERT OR IGNORE INTO duty_status " +
                             "(duty_status_id, duty_status_value) " +

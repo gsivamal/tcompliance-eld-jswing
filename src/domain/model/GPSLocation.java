@@ -1,6 +1,6 @@
 package domain.model;
 
-import dao.DbUtil;
+import dao.SQLiteDatabase;
 import javafx.beans.property.*;
 
 import java.sql.Connection;
@@ -64,7 +64,7 @@ public class GPSLocation {
 
     public static GPSLocation getLatestGPSLocation(){
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement(
                     "SELECT longitude, latitude, location " +
                             "FROM gps_location"
@@ -84,7 +84,7 @@ public class GPSLocation {
 
     public static void updateLatestGPSLocation(String location, double latitude, double longitude){
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement truncateStatement = connection.prepareStatement( "DELETE FROM gps_location;" );
             truncateStatement.executeUpdate();
             truncateStatement.close();

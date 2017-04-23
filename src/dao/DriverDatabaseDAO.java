@@ -1,5 +1,6 @@
 package dao;
 
+import domain.mediator.Instances;
 import domain.model.Driver;
 import domain.model.DriverList;
 import domain.model.LogbookList;
@@ -12,18 +13,10 @@ import java.sql.SQLException;
 
 public class DriverDatabaseDAO implements DriverDao {
 
-    private static final DriverDatabaseDAO instance = new DriverDatabaseDAO();
-
-    private DriverDatabaseDAO(){}
-
-    public static DriverDatabaseDAO getInstance(){
-        return instance;
-    }
-
     @Override
     public void add(Driver driver) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement addStatement = connection.prepareStatement( "INSERT INTO driver " +
                     "(driver_id, first_name, middle_name, last_name, lic_number, issued_country, issued_state, status, username, password, is_admin)" +
                     "VALUES" +
@@ -49,7 +42,7 @@ public class DriverDatabaseDAO implements DriverDao {
     @Override
     public void update(Driver driver) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement( "UPDATE driver SET " +
                     "first_name = ?, middle_name = ?, last_name = ?, lic_number = ?, issued_country = ?, issued_state = ?, status = ?, username = ?, password = ?, is_admin = ?" +
                     "WHERE driver_id = ?" );
@@ -74,7 +67,7 @@ public class DriverDatabaseDAO implements DriverDao {
     @Override
     public void remove(Driver driver) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement deleteStatement = connection.prepareStatement( "DELETE FROM driver WHERE driver_id = ?" );
             deleteStatement.setInt( 1, driver.getID() );
             deleteStatement.executeUpdate();
@@ -86,7 +79,7 @@ public class DriverDatabaseDAO implements DriverDao {
     @Override
     public Driver get(int id) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getStatement = connection.prepareStatement( "SELECT * FROM driver WHERE driver_id = ?" );
             getStatement.setInt( 1, id );
             ResultSet resultSet = getStatement.executeQuery();
@@ -103,7 +96,7 @@ public class DriverDatabaseDAO implements DriverDao {
                 String password = resultSet.getString( "password" );
                 boolean isAdmin = resultSet.getInt( "is_admin" ) == 1;
                 Driver driver = DriverFactory.getInstance().getDriver( driverID, username, password, password, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, isAdmin, new LogbookList());
-                LogbookList logbookList = LogbookDatabaseDAO.getInstance().getAllByDriverID( driverID );
+                LogbookList logbookList = Instances.getLogbookSQLiteDB().getAllByDriverID( driverID );
                 driver.setLogbookList( logbookList );
                 return driver;
             }
@@ -117,7 +110,7 @@ public class DriverDatabaseDAO implements DriverDao {
     public DriverList getAll() {
         DriverList driverList = new DriverList();
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement getAllStatement = connection.prepareStatement( "SELECT * FROM driver" );
             ResultSet resultSet = getAllStatement.executeQuery();
             while ( resultSet.next() ) {
@@ -133,7 +126,7 @@ public class DriverDatabaseDAO implements DriverDao {
                 String password = resultSet.getString( "password" );
                 boolean isAdmin = resultSet.getInt( "is_admin" ) == 1;
                 Driver driver = DriverFactory.getInstance().getDriver( driverID, username, password, password, firstName, middleName, lastName, licNumber, status, issuedState, issuedCountry, isAdmin, new LogbookList() );
-                LogbookList logbookList = LogbookDatabaseDAO.getInstance().getAllByDriverID( driverID );
+                LogbookList logbookList = Instances.getLogbookSQLiteDB().getAllByDriverID( driverID );
                 driver.setLogbookList( logbookList );
                 driverList.add( driver );
             }
@@ -145,6 +138,6 @@ public class DriverDatabaseDAO implements DriverDao {
 
     @Override
     public int getLastID() {
-        return DbUtil.getLastID( "driver", "driver_id" );
+        return SQLiteDatabase.getLastID( "driver", "driver_id" );
     }
 }

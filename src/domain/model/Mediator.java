@@ -1,6 +1,7 @@
 package domain.model;
 
 import dao.*;
+import domain.mediator.Instances;
 import domain.model.factory.*;
 
 import java.sql.SQLException;
@@ -11,11 +12,11 @@ public class Mediator {
     private DriverList driverList;
     private VehicleList vehicleList;
     private Driver loggedDriver;
-    private DriverDatabaseDAO driverDatabase = DriverDatabaseDAO.getInstance();
-    private LogbookDatabaseDAO logbookDatabase = LogbookDatabaseDAO.getInstance();
-    private FuelCardDatabaseDAO fuelCardDatabase = FuelCardDatabaseDAO.getInstance();
-    private LoadDatabaseDAO loadDatabase = LoadDatabaseDAO.getInstance();
-    private VehicleDatabaseDAO vehicleDatabase = VehicleDatabaseDAO.getInstance();
+    private DriverDatabaseDAO driverDatabase = Instances.getDriverSQLiteDB();
+    private LogbookDatabaseDAO logbookDatabase = Instances.getLogbookSQLiteDB();
+    private FuelCardDatabaseDAO fuelCardDatabase = Instances.getFuelCardSQLiteDB();
+    private LoadDatabaseDAO loadDatabase = Instances.getLoadDatabaseSQLiteDB();
+    private VehicleDatabaseDAO vehicleDatabase = Instances.getVehicleSQLiteDb();
 
 
     private static final Mediator instance = new Mediator();

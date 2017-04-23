@@ -8,17 +8,10 @@ import java.sql.SQLException;
 
 public class DutyStatusDatabaseDAO implements DutyStatusDao{
 
-    private static final DutyStatusDatabaseDAO instance = new DutyStatusDatabaseDAO();
-    private DutyStatusDatabaseDAO(){}
-
-    public static DutyStatusDatabaseDAO getInstance(){
-        return instance;
-    }
-
     @Override
     public void add(DutyStatus status) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement addStatement = connection.prepareStatement(
                     "INSERT INTO duty_status " +
                             "(duty_status_id, duty_status_value) " +
@@ -36,7 +29,7 @@ public class DutyStatusDatabaseDAO implements DutyStatusDao{
     @Override
     public void remove(DutyStatus status) {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement removeStatement = connection.prepareStatement(
                     "DELETE FROM duty_status " +
                             "WHERE duty_status_id = ?;"
@@ -52,7 +45,7 @@ public class DutyStatusDatabaseDAO implements DutyStatusDao{
     @Override
     public void removeAll() {
         try {
-            Connection connection = DbUtil.getConnection();
+            Connection connection = SQLiteDatabase.getConnection();
             PreparedStatement removeAllStatement = connection.prepareStatement(
                     "DELETE FROM duty_status;"
             );
